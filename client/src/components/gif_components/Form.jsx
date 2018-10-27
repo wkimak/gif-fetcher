@@ -13,7 +13,7 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchApi(this.state.searchTerm);
+    this.props.fetchGifs(this.state.searchTerm);
   }
 
   render() {

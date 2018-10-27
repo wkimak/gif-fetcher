@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import Main from './gif_components/Main.jsx';
+import GifContainer from '../containers/GifContainer.jsx';
 import Navbar from './Navbar.jsx';
 
 const App = () => (
   <Fragment>
     <Navbar />
-    <Main />
+    <GifContainer />
   </Fragment>
 )
-
-
 
 export default App;

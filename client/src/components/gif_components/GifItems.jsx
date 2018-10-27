@@ -1,7 +1,7 @@
 import React from 'react';
 import Gif from './Gif.jsx';
 
-const GifsContainer = ({ gifList }) => (
+const GifItems = ({ gifList }) => (
   <div className='gifs_container'>
     { gifList.length ? gifList.map((item) => {
       return (
@@ -11,4 +11,4 @@ const GifsContainer = ({ gifList }) => (
   </div>
 );
 
-export default GifsContainer;
+export default GifItems;
