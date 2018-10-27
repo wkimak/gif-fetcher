@@ -1,6 +1,10 @@
-import { combineReducers } from 'redux';
-import gifReducer from './gifReducer.js';
+import { combineReducers, reduceReducers } from 'redux';
+import getGifs from './gifReducer.js';
+import handleLoading from './gifReducer.js';
+import handleError from './gifReducer.js';
 
 export default combineReducers({
-    gifList: gifReducer.gifReducer
+    gifList: getGifs.getGifs,
+    isLoading: handleLoading.handleLoading,
+    isError: handleError.handleError
 })
