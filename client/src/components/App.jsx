@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import Main from './gif_components/Main.jsx';
+import Navbar from './Navbar.jsx';
 
-class App extends Component {
+const App = () => (
+  <Fragment>
+    <Navbar />
+    <Main />
+  </Fragment>
+)
 
-  render() {
-    return (
-      <div> Hello World </div>
-    )
-  }
-}
+
 
 export default App;

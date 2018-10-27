@@ -1,0 +1,46 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* ----- Navbar ----- */
+.navbar_container {
+	height: 50px;
+	background-color: black;
+}
+
+/* ----- Form ----- */
+.form_container {
+	border: 1px solid red;
+	height: 200px;
+	width: 600px;
+	margin: auto;
+	margin-top: 25px;
+	padding-top: 50px;
+	background-color: rgba(0,0,0,0.3);
+} 
+
+.form_container input {
+	display: block;
+	width: 80%;
+	margin: auto;
+}
+
+.form_container input[type='text'] {
+	height: 40px;
+	margin-bottom: 20px;
+}
+
+.form_container input[type='submit'] {
+	height: 60px;
+}
+
+/* ----- Gifs Container ---- */
+.gifs_container {
+	width: 80%;
+	height: 800px;
+	border: 1px solid red;
+	margin: auto;
+	margin-top: 20px;
+}
