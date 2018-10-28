@@ -40,7 +40,23 @@
 .gifs_container {
 	width: 80%;
 	height: 800px;
-	border: 1px solid red;
 	margin: auto;
 	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+/* ------ Gifs ----- */
+.gif_container {
+	width: 400px;
+	height: 200px;
+	border: 1px solid orange;
+	margin: 10px;
+	padding-top: 20px;
+}
+
+.gif_container iframe {
+	display: block;
+	margin: auto;
 }

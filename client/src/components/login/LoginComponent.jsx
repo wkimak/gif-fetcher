@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Signup extends Component {
+class Login extends Component {
 
   state={ username: '', password: '' }
 
@@ -12,7 +12,7 @@ class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleSignup(this.state.username, this.state.password);
+    this.props.handleLogin(this.state.username, this.state.password);
   }
 
   render() {
@@ -20,10 +20,10 @@ class Signup extends Component {
       <form onSubmit={ this.handleSubmit }>
         <input name='username' onChange={ this.handleChange } value={ this.state.username } type='text' />
         <input name='password' onChange={ this.handleChange } value={ this.state.password } type='password' />
-        <input type='submit' />
+        <input type='submit' value='Login' />
       </form>
     );
   }
 }
 
-export default Signup;
+export default Login;

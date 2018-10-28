@@ -1,11 +1,10 @@
-const { dbPassword } = require('../config.js');
-const mysql = require('mysql');
+const { dbPassword } = require('../../config.js');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host : '127.0.0.1',
+    host : 'localhost',
     user : 'root',
-    password : dbPassword,
+    password : 'Jkpywb98',
     database : 'gif_fetcher'
   }
 });

@@ -1,14 +1,34 @@
 import axios from 'axios';
-import { FETCH_GIFS, DISPLAY_SPINNER, HIDE_SPINNER, DISPLAY_ERROR, HIDE_ERROR } from '../constants.js';
+import { FETCH_GIFS, DISPLAY_SPINNER, HIDE_SPINNER, DISPLAY_ERROR, HIDE_ERROR } from '../constants/constants.js';
+
+export const handleLoading = (isLoading) => {
+  if(isLoading) {
+    return { type: DISPLAY_SPINNER }
+  } else {
+    return { type: HIDE_SPINNER }
+  }
+
+}
+
+export const handleError = (isError) => {
+  if(isError) {
+    return { type: DISPLAY_ERROR }
+  } else {
+    return { type: HIDE_ERROR }
+  }
+}
+
 
 export const fetchGifs = (searchTerm) => async (dispatch) => {
-    dispatch({ type: DISPLAY_SPINNER })
+    dispatch(handleLoading(true));
     const response = await axios.get('/api/gif', { params: { searchTerm: searchTerm }});
+    console.log(response)
     if(!response.data.data.length){
-      dispatch({ type: DISPLAY_ERROR })
+      dispatch(handleError(true))
     } else {
       dispatch({ type: FETCH_GIFS, payload: response.data.data })
-      dispatch({ type: HIDE_ERROR })
+      dispatch(handleError(false));
     }
-    dispatch({ type: HIDE_SPINNER })
+    dispatch(handleLoading(false))
 }
+
