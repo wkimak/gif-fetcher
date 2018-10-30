@@ -3,10 +3,12 @@ import getGifs from './gifReducer.js';
 import handleLoading from './gifReducer.js';
 import handleError from './gifReducer.js';
 import getUserId from './authReducer.js';
+import handleFavorites from './favoritesReducer.js';
 
 export default combineReducers({
     gifList: getGifs.getGifs,
     isLoading: handleLoading.handleLoading,
     isError: handleError.handleError,
-    userId: getUserId.getUserId
+    userId: getUserId.getUserId,
+    favoritesList: handleFavorites.handleFavorites
 })

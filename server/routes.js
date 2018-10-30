@@ -9,5 +9,6 @@ router.get('/api/gifs', gifControllers.fetchGifs);
 router.post('/api/users', authControllers.handleSignup);
 router.post('/api/favorites', favoritesControllers.postFavorites);
 router.get('/api/favorites', favoritesControllers.fetchFavorites);
+router.delete('/api/favorites', favoritesControllers.deleteFavorites);
 
 module.exports = router;

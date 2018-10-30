@@ -6,5 +6,6 @@ export const HIDE_ERROR = 'HIDE_ERROR';
 
 export const POST_FAVORITE = 'POST_FAVORITE';
 export const FETCH_FAVORITES = 'FETCH_FAVORITES';
+export const DELETE_FAVORITE = 'DELETE_FAVORITE';
 
 export const FETCH_USERID = 'FETCH_USERID';

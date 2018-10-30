@@ -23,8 +23,8 @@ exports.postFavorites = async (req, res) => {
         try {
           const fetchFavoriteId = await knex.select('id_favorite').from('favorites').where('gif_id', gifId);
           const checkExists = await knex.select('user_id', 'favorite_id')
-                                        .from('users_favorites').where({ user_id: req.body.userId })
-                                        .andWhere({ favorite_id: fetchFavoriteId[0].id_favorite });
+                                        .from('users_favorites').where('user_id', req.body.userId)
+                                        .andWhere('favorite_id', fetchFavoriteId[0].id_favorite);
           if(!checkExists.length) {
             const insertJoinTable = await knex('users_favorites')
                                          .insert({ user_id: req.body.userId, 
@@ -49,5 +49,19 @@ exports.fetchFavorites = async (req, res) => {
     res.send(favorites);
   } catch {
       console.log('ERROR fetching favorites');
+  }
+}
+
+exports.deleteFavorites = async (req, res) => {
+  try {
+
+    const favoriteId = await knex.select('id_favorite').from('favorites').where('gif_id', req.query.gifId);
+    
+    const deletedFavorite = await knex('users_favorites')
+                                  .where('user_id', req.query.userId)
+                                  .andWhere('favorite_id', favoriteId[0].id_favorite)
+                                  .del();
+  } catch {
+      console.log('ERROR deleting favorite from users_favorites table');
   }
 }
