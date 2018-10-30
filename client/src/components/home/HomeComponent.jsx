@@ -3,10 +3,10 @@ import Form from './FormComponent.jsx';
 import GifItems from './GifItemsComponent.jsx';
 
 
-const Home = ({ fetchGifs, gifList, isLoading, isError, handleFavorite }) => (
+const Home = ({ userId, fetchGifs, gifList, isLoading, isError, postFavorite }) => (
   <section>
     <Form fetchGifs={ fetchGifs } />
-    <GifItems gifList={ gifList } isLoading={ isLoading } isError={ isError } handleFavorite={ handleFavorite } />
+    <GifItems userId={ userId } gifList={ gifList } isLoading={ isLoading } isError={ isError } postFavorite={ postFavorite } />
   </section>  
 );
 

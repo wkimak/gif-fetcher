@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Gif = ({ url, gifId, handleFavorite }) => (
+const Gif = ({ userId, url, gifId, postFavorite }) => (
   <div className='gif_container'>
     <iframe src={ url }></iframe> 
-    <i onClick={ () => handleFavorite(gifId) } className="far fa-star"></i>
+    <i onClick={ () => postFavorite(userId, gifId, url) } className="far fa-star"></i>
     <i className="fas fa-star"></i>
   </div>
 )

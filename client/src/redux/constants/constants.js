@@ -4,4 +4,7 @@ export const HIDE_SPINNER = 'HIDE_SPINNER';
 export const DISPLAY_ERROR = 'DISPLAY_ERROR';
 export const HIDE_ERROR = 'HIDE_ERROR';
 
-export const FAVORITE_GIF = 'FAVORITE_GIF';
+export const POST_FAVORITE = 'POST_FAVORITE';
+export const FETCH_FAVORITES = 'FETCH_FAVORITES';
+
+export const FETCH_USERID = 'FETCH_USERID';

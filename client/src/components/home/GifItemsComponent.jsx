@@ -4,13 +4,13 @@ import Loading from './LoadingComponent.jsx';
 import ErrorMessage from './ErrorComponent.jsx';
 
 
-const GifItems = ({ gifList, isLoading, isError, handleFavorite }) => (
+const GifItems = ({ userId, gifList, isLoading, isError, postFavorite }) => (
   <div className='gifs_container'>
     { isLoading ? <Loading /> : null }
     { isError ? <ErrorMessage /> : null }
     { gifList.length ? gifList.map((item) => {
       return (
-        <Gif key={ item.id } gifId={ item.id } url={ item.images.fixed_height_small.url } handleFavorite={ handleFavorite } />
+        <Gif userId={ userId } key={ item.id } gifId={ item.id } url={ item.images.fixed_height_small.url } postFavorite={ postFavorite } />
       )
     }): null }
   </div>
