@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Hover from './HoverComponent.jsx';
 
-const Gif = ({ userId, url, gifId, postFavorite }) => (
-  <div className='gif_container'>
-    <iframe src={ url }></iframe> 
-    <i onClick={ () => postFavorite(userId, gifId, url) } className="far fa-star"></i>
-    <i className="fas fa-star"></i>
-  </div>
-)
+class Gif extends Component {
+
+  state={ isHovered: false }
+
+  handleMouseOver = () => {
+    this.setState({ isHovered: true })
+  }
+
+  handleMouseOut = () => {
+    this.setState({ isHovered: false })
+  }
+
+  render() {
+    return (
+      <div className='gif_container' onMouseOver={ this.handleMouseOver } onMouseLeave={ this.handleMouseOut }>
+        { this.state.isHovered ? 
+          <Hover url={ this.props.url} 
+                 userId={ this.props.userId} 
+                 gifId={ this.props.gifId} 
+                 postFavorite={ this.props.postFavorite } />
+          : null }
+        <iframe src={ this.props.url }>
+        </iframe> 
+      </div>
+    )
+  }
+}
+
+
 
 export default Gif;
+
+
+
+

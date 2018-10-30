@@ -7,34 +7,55 @@
 /* ----- Navbar ----- */
 .navbar_container {
 	height: 50px;
-	background-color: black;
+	background-color: #351a72;
+	padding-top: 10px;
+}
+
+/* ---- Login ----- */
+.login_form {
+	float: right;
+	margin-right: 150px;
+}
+
+.login_form input[type='text'], .login_form input[type='password'] {
+	margin-right: 3px;
+	height: 25px;
+	width: 150px;
+}
+
+.login_form input[type='submit'] {
+	border: none;
+	height: 25px;
+	width: 80px;
 }
 
 /* ----- Form ----- */
 .form_container {
-	border: 1px solid red;
-	height: 200px;
-	width: 600px;
+	height: 65px;
+	width: 60%;
+	height: 40px;
 	margin: auto;
 	margin-top: 25px;
-	padding-top: 50px;
-	background-color: rgba(0,0,0,0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid black;
 } 
 
 .form_container input {
-	display: block;
-	width: 80%;
+	flex: 1;
 	margin: auto;
-}
-
-.form_container input[type='text'] {
 	height: 40px;
-	margin-bottom: 20px;
 }
 
-.form_container input[type='submit'] {
-	height: 60px;
+.form_container i {
+	padding: 12px;
+	height: 40px;
+	background-color: #351a72;
+	color: white;
+	cursor: pointer;
 }
+
 
 /* ----- Gifs Container ---- */
 .gifs_container {
@@ -49,43 +70,101 @@
 
 /* ------ Gifs ----- */
 .gif_container {
-	width: 400px;
-	height: 200px;
-	border: 1px solid orange;
+	height: 300px;
 	margin: 10px;
-	padding-top: 20px;
+	position: relative;
 }
 
 .gif_container iframe {
-	display: block;
-	margin: auto;
+	height: 300px;
+}
+
+/* ----- Hover Component ----- */
+.hover_container {
+	position: absolute;
+	top: 0;
+	height: 300px; 
+	width: 100%;   
+}
+
+.top_hover_container {
+	background-color: rgb(50,206,206);
+	height: 80px;
+	padding: 20px;
+}
+
+.bottom_hover_container {
+	height: 220px;
+	background-color: transparent;
 }
 
 /* ---------- Favorite Items --------- */
-.favorites_container {
-	width: 50%;
+.main_container {
+	width: 0%;
 	height: 100vh;
-	background-color: white;
-	border-left: 1px solid black;
 	position: fixed;
 	top: 0;
+	background-color: rgba(255,255,255,0.9);
+}
+
+.favorites_container {
+	width: 600px;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+}
+
+/* Favorites Closed */
+.main_container_open {
+	width: 100%;
+}
+
+.favorites_container_closed {
+	right: -540px;
+}
+
+.favorites_container_open {
 	right: 0;
-	overflow-y: scroll;
+}
+
+/* Item within favorites container */
+
+.favorites_items_container {
+  width: 90%;
+  height: 100vh;
+  background-color: white;
+  float: right;
+  overflow-y: scroll;
+}
+
+
+/* ---- Open Favorites Button --- */
+.open_favorites_btn {
+	transform: rotate(-90deg);
+	position: absolute;
+	top: 200px;
+	left: -65px;
+	width: 200px;
+	height: 50px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: rgb(50,206,206);
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.open_favorites_btn:focus {
+	outline: none;
 }
 
 
 /* ----- Individual Favorites Component ------ */
 
-.favorite_container {
-	border: 1px solid blue;
-	width: 90%;
-	height: 300px;
-	margin: auto;
-	margin-bottom: 20px;
-	padding-top: 100px
-}
-
-.favorite_container iframe {
+.favorite_iframe {
 	display: block;
 	margin: auto;
+	width: 70%;
+	height: 300px;
+	margin-bottom: 10px;
 }

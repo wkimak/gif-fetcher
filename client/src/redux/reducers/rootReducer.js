@@ -1,14 +1,17 @@
 import { combineReducers, reduceReducers } from 'redux';
-import getGifs from './gifReducer.js';
-import handleLoading from './gifReducer.js';
-import handleError from './gifReducer.js';
-import getUserId from './authReducer.js';
+import getGifs from './fetchGifsReducer.js';
+import handleLoading from './fetchGifsReducer.js';
+import handleError from './fetchGifsReducer.js';
+import getUserId from './loginReducer.js';
 import handleFavorites from './favoritesReducer.js';
+import toggleFavoritesComponent from './favoritesReducer.js';
 
 export default combineReducers({
     gifList: getGifs.getGifs,
     isLoading: handleLoading.handleLoading,
     isError: handleError.handleError,
     userId: getUserId.getUserId,
-    favoritesList: handleFavorites.handleFavorites
+    favoritesList: handleFavorites.handleFavorites,
+    currentDeleted: handleFavorites.handleFavorites,
+    favoritesOpen: toggleFavoritesComponent.toggleFavoritesComponent
 })
