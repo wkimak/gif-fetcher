@@ -11,7 +11,7 @@ export default combineReducers({
     isLoading: handleLoading.handleLoading,
     isError: handleError.handleError,
     userId: getUserId.getUserId,
+    username: getUserId.getUserId,
     favoritesList: handleFavorites.handleFavorites,
-    currentDeleted: handleFavorites.handleFavorites,
     favoritesOpen: toggleFavoritesComponent.toggleFavoritesComponent
 })

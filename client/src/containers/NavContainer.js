@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { handleLogin } from '../redux/actions/loginActions.js';
+import { handleLogin, handleSignout } from '../redux/actions/loginActions.js';
 
 import Navbar from '../components/NavbarComponent.jsx';
 
 const mapStateToProps = (state) => ({
-  userId: state.userId.userId
+  userId: state.userId.userId,
+  username: state.username.username
 })
 
 const mapDispatchToProps = {
-  handleLogin
+  handleLogin, handleSignout
 }
 
 

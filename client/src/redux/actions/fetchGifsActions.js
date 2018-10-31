@@ -19,9 +19,9 @@ export const handleError = (isError) => {
 }
 
 
-export const fetchGifs = (searchTerm) => async (dispatch) => {
+export const fetchGifs = (searchTerm, userId) => async (dispatch) => {
     dispatch(handleLoading(true));
-    const response = await axios.get('/api/gifs', { params: { searchTerm: searchTerm }});
+    const response = await axios.get('/api/gifs', { params: { searchTerm: searchTerm, userId: userId }});
     console.log(response)
     if(!response.data.data.length){
       dispatch(handleError(true))

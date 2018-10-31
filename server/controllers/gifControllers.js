@@ -1,5 +1,6 @@
 const axios = require('axios');
-const { apiKey } = require('../../config.js')
+const { knex } = require('../database/index.js');
+const { apiKey } = require('../../config.js');
 
 exports.fetchGifs = async (req, res) => { 
   try {

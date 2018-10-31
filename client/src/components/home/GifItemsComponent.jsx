@@ -4,7 +4,7 @@ import Loading from './LoadingComponent.jsx';
 import ErrorMessage from './ErrorComponent.jsx';
 
 
-const GifItems = ({ userId, gifList, isLoading, isError, postFavorite, favoritesList, currentDeleted }) => (
+const GifItems = ({ userId, gifList, isLoading, isError, postFavorite }) => (
   <div className='gifs_container'>
     { isLoading ? <Loading /> : null }
     { isError ? <ErrorMessage /> : null }
@@ -14,9 +14,7 @@ const GifItems = ({ userId, gifList, isLoading, isError, postFavorite, favorites
              key={ item.id } 
              gifId={ item.id } 
              url={ item.images.downsized_large.url } 
-             postFavorite={ postFavorite } 
-             favoritesList={ favoritesList }
-             currentDeleted={ currentDeleted } />
+             postFavorite={ postFavorite } />
       )
     }): null }
   </div>

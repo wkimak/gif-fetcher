@@ -1,5 +1,6 @@
 const initialState = {
-  userId: null
+  userId: null,
+  username: null
 }
 
 const getUserId = (state = initialState, action) => {
@@ -7,11 +8,22 @@ const getUserId = (state = initialState, action) => {
     case 'FETCH_USERID':
       return {
         ...state,
-        userId: action.payload
+        userId: action.payload.userId,
+        username: action.payload.username
       }
+
+    case 'REMOVE_USERID':
+      return {
+        ...state,
+        userId: null,
+        username: null
+      }
+      
     default:
       return state;
   }
 }
+
+
 
 export default { getUserId };

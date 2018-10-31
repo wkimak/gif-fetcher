@@ -26,7 +26,7 @@ export const fetchFavorites = (userId) => async (dispatch) => {
 
 export const deleteFavorite = (userId, gifId, arrayIndex) => async (dispatch) => {
   try {
-  dispatch({ type: DELETE_FAVORITE, payload: {arrayIndex: arrayIndex, gifId: gifId }})
+  dispatch({ type: DELETE_FAVORITE, payload: { arrayIndex: arrayIndex, gifId: gifId }})
   const deletedFavorite = await axios.delete('/api/favorites', { params: { userId: userId, gifId: gifId }})
   } catch {
     console.log('ERROR deleting favorite');

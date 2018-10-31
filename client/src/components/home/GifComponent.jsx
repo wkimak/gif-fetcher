@@ -3,7 +3,7 @@ import Hover from './HoverComponent.jsx';
 
 class Gif extends Component {
 
-  state={ isHovered: false }
+  state={ isHovered: false, isFavorite: false }
 
   handleMouseOver = () => {
     this.setState({ isHovered: true })
@@ -13,10 +13,11 @@ class Gif extends Component {
     this.setState({ isHovered: false })
   }
 
+
   render() {
     return (
       <div className='gif_container' onMouseOver={ this.handleMouseOver } onMouseLeave={ this.handleMouseOut }>
-        { this.state.isHovered ? 
+        { this.state.isHovered && this.props.userId ? 
           <Hover url={ this.props.url} 
                  userId={ this.props.userId} 
                  gifId={ this.props.gifId} 

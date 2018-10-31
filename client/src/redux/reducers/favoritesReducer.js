@@ -1,6 +1,5 @@
 const initialState = {
   favoritesList: [],
-  currentDeleted: [],
   favoritesOpen: false
 }
 
@@ -15,7 +14,6 @@ const handleFavorites = (state = initialState, action) => {
     case 'DELETE_FAVORITE':
       return {
         ...state,
-        currentDeleted: [...state.currentDeleted, action.payload.gifId],
         favoritesList: [...state.favoritesList.slice(0, action.payload.arrayIndex),
                         ...state.favoritesList.slice(action.payload.arrayIndex + 1)]
       }

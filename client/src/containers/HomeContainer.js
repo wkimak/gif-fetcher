@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
 import { fetchGifs } from '../redux/actions/fetchGifsActions.js';
-import { postFavorite } from '../redux/actions/favoriteActions.js';
+import { postFavorite, fetchFavorites } from '../redux/actions/favoriteActions.js';
 import Home from '../components/home/HomeComponent.jsx';
+
 
 const mapStateToProps = (state) => ({
    gifList: state.gifList.gifList,
    isLoading: state.isLoading.isLoading,
    isError: state.isError.isError,
    userId: state.userId.userId,
-   currentDeleted: state.currentDeleted.currentDeleted
 })
+
 
 const mapDispatchToProps = { fetchGifs, postFavorite }
 
