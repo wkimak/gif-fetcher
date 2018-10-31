@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_GIFS, DISPLAY_SPINNER, HIDE_SPINNER, DISPLAY_ERROR, HIDE_ERROR } from '../constants/constants.js';
+import { FETCH_GIFS, CHANGE_SEARCH, DISPLAY_SPINNER, HIDE_SPINNER, DISPLAY_ERROR, HIDE_ERROR } from '../constants/constants.js';
 
 export const handleLoading = (isLoading) => {
   if(isLoading) {
@@ -18,14 +18,22 @@ export const handleError = (isError) => {
   }
 }
 
+export const handleSearch = (searchTerm, offset) => (dispatch) => {
+  dispatch({ type: CHANGE_SEARCH, payload: searchTerm })
+  dispatch(fetchGifs(searchTerm, offset));
+}
 
-export const fetchGifs = (searchTerm, userId) => async (dispatch) => {
+
+export const fetchGifs = (searchTerm, offset) => async (dispatch) => {
+  console.log('OFFSET', offset)
     dispatch(handleLoading(true));
-    const response = await axios.get('/api/gifs', { params: { searchTerm: searchTerm, userId: userId }});
+    const response = await axios.get('/api/gifs', { params: { searchTerm, offset }});
+    console.log(response);
     if(!response.data.data.length){
       dispatch(handleError(true))
     } else {
-      dispatch({ type: FETCH_GIFS, payload: response.data.data })
+      dispatch({ type: FETCH_GIFS, payload: { data: response.data.data, 
+                                              offset: offset } })
       dispatch(handleError(false));
     }
     dispatch(handleLoading(false))

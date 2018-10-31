@@ -1,4 +1,5 @@
 export const FETCH_GIFS = 'FETCH_GIFS';
+export const CHANGE_SEARCH = 'CHANGE_SEARCH';
 export const DISPLAY_SPINNER = 'DISPLAY_SPINNER';
 export const HIDE_SPINNER = 'HIDE_SPINNER';
 export const DISPLAY_ERROR = 'DISPLAY_ERROR';

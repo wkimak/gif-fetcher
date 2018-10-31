@@ -3,7 +3,6 @@ const initialState = {
   favoritesOpen: false
 }
 
-
 export const handleFavorites = (state = initialState, action) => {
   switch(action.type) {
     case 'POST_FAVORITE':

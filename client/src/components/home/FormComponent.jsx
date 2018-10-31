@@ -12,7 +12,7 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchGifs(this.state.searchTerm, this.props.userId);
+    this.props.handleSearch(this.state.searchTerm, this.props.offset);
   }
 
   render() {

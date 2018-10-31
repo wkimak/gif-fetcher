@@ -1,13 +1,12 @@
 export const loadState = () => {
   try {
-
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
     if(!userId) return undefined;
     return { getUserId: { userId: JSON.parse(userId), username: username }};
   } catch {
     console.log('ERROR getting from local storage');
-    return {};
+    return undefined;
   }
 }
 

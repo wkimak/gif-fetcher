@@ -9,6 +9,7 @@ const GifItems = ({ userId, gifList, isLoading, isError, postFavorite }) => (
     { isLoading ? <Loading /> : null }
     { isError ? <ErrorMessage /> : null }
     { gifList.length ? gifList.map((item) => {
+       console.log('gifList', item)
       return (
         <Gif userId={ userId } 
              key={ item.id } 

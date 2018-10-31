@@ -18,7 +18,6 @@ export const getUserId = (state = initialState, action) => {
         userId: null,
         username: null
       }
-      
     default:
       return state;
   }
