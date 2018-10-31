@@ -3,7 +3,7 @@ const initialState = {
   username: null
 }
 
-const getUserId = (state = initialState, action) => {
+export const getUserId = (state = initialState, action) => {
   switch(action.type) {
     case 'FETCH_USERID':
       return {
@@ -25,5 +25,3 @@ const getUserId = (state = initialState, action) => {
 }
 
 
-
-export default { getUserId };

@@ -5,13 +5,13 @@ import Home from '../components/home/HomeComponent.jsx';
 
 
 const mapStateToProps = (state) => ({
-   gifList: state.gifList.gifList,
-   isLoading: state.isLoading.isLoading,
-   isError: state.isError.isError,
-   userId: state.userId.userId,
+   gifList: state.getGifs.gifList,
+   isLoading: state.handleLoading.isLoading,
+   isError: state.handleError.isError,
+   userId: state.getUserId.userId,
 })
 
 
-const mapDispatchToProps = { fetchGifs, postFavorite }
+const mapDispatchToProps = { fetchGifs, postFavorite, fetchFavorites }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

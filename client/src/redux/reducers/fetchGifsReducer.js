@@ -3,7 +3,7 @@ const initialState = {
   isLoading: false
 }
 
-const handleLoading = (state = initialState, action) => {
+export const handleLoading = (state = initialState, action) => {
   switch(action.type) {
     case 'DISPLAY_SPINNER':
       return {
@@ -20,7 +20,7 @@ const handleLoading = (state = initialState, action) => {
    }
 }
 
-const handleError = (state = initialState, action) => {
+export const handleError = (state = initialState, action) => {
   switch(action.type) {
     case 'DISPLAY_ERROR':
       return {
@@ -38,7 +38,7 @@ const handleError = (state = initialState, action) => {
   }
 }
 
-const getGifs = (state = initialState, action) => {
+export const getGifs = (state = initialState, action) => {
   switch(action.type) {
     case 'FETCH_GIFS':
       return {
@@ -50,4 +50,4 @@ const getGifs = (state = initialState, action) => {
   }
 }
 
-export default { getGifs, handleLoading, handleError };
+

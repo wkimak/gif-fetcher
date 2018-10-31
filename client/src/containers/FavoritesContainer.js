@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import FavoriteItemsComponent from '../components/favorites/FavoriteItemsComponent.jsx';
-import { deleteFavorite, fetchFavorites } from '../redux/actions/favoriteActions.js';
+import { deleteFavorite, fetchFavorites, toggleFavoritesComponent } from '../redux/actions/favoriteActions.js';
 
 const mapStateToProps = (state) => ({
-  favoritesList: state.favoritesList.favoritesList,
-  userId: state.userId.userId,
-  favoritesOpen: state.favoritesOpen.favoritesOpen
+  favoritesList: state.handleFavorites.favoritesList,
+  userId: state.getUserId.userId,
+  favoritesOpen: state.toggleFavoritesComponent.favoritesOpen
 })
 
-const mapDispatchToProps = { deleteFavorite, fetchFavorites }
+const mapDispatchToProps = { deleteFavorite, fetchFavorites, toggleFavoritesComponent  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavoriteItemsComponent);

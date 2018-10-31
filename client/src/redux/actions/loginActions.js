@@ -4,11 +4,16 @@ import { fetchFavorites } from './favoriteActions.js';
 
 export const handleLogin = (username, password) => async (dispatch) => {
   const login = await axios.post('/api/users', { username: username, password: password })
-  localStorage.setItem('userId', login.data);
   dispatch({ type: FETCH_USERID, payload: { userId: login.data, username: username } })
 }
 
-export const handleSignout = (userId) => (dispatch) => {
-  localStorage.removeItem('userId');
+// export const checkLocalStorage = () => (dispatch) => {
+  
+//     dispatch({ type: FETCH_USERID, payload: { userId: userId, username: username}})
+//     return userId;
+  
+// }
+
+export const handleSignout = () => (dispatch) => {
   dispatch({ type: REMOVE_USERID })
 }

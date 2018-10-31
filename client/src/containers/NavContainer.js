@@ -6,8 +6,8 @@ import { handleLogin, handleSignout } from '../redux/actions/loginActions.js';
 import Navbar from '../components/NavbarComponent.jsx';
 
 const mapStateToProps = (state) => ({
-  userId: state.userId.userId,
-  username: state.username.username
+  userId: state.getUserId.userId,
+  username: state.getUserId.username
 })
 
 const mapDispatchToProps = {

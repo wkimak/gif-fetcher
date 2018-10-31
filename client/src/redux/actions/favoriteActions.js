@@ -4,20 +4,19 @@ import { POST_FAVORITE, FETCH_FAVORITES, DELETE_FAVORITE, OPEN_FAVORITES } from 
 export const postFavorite = (userId, gifId, gifUrl) => async (dispatch) => {
   try {
     const favorite = await axios.post('/api/favorites', { userId: userId, gifId: gifId, gifUrl: gifUrl });
+    dispatch({ type: POST_FAVORITE, payload: { gif_id: gifId, url: gifUrl } })
   } catch {
     console.log('ERROR posting favorite');
   }
 }
 
-const toggleFavoritesComponent = () => (dispatch) => {
+export const toggleFavoritesComponent = () => (dispatch) => {
   dispatch({ type: OPEN_FAVORITES })
 }
 
 export const fetchFavorites = (userId) => async (dispatch) => {
-  dispatch(toggleFavoritesComponent());
   try {
   const favorites = await axios.get('/api/favorites', { params: { userId: userId } });
-  console.log(favorites)
   dispatch({ type: FETCH_FAVORITES, payload: favorites.data })
   } catch {
     console.log('ERROR fetching favorites');

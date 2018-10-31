@@ -16,6 +16,7 @@ exports.postFavorites = async (req, res) => {
                                       .insert({ user_id: req.body.userId, 
                                                 favorite_id: fetchFavoriteId[0].id_favorite 
                                               });
+        res.sendStatus(200);
       } catch {
           console.log('ERROR inserting into favorites/user_favorites table');
       }
@@ -31,6 +32,7 @@ exports.postFavorites = async (req, res) => {
                                                    favorite_id: fetchFavoriteId[0].id_favorite 
                                                  });
           }
+          res.sendStatus(200);
         } catch {
             console.log('ERROR inserting into user_favorites table');
         }
