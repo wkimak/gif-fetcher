@@ -2,7 +2,8 @@ const initialState = {
   gifList: [],
   isLoading: false,
   searchTerm: null,
-  offset: 0
+  offset: 0,
+  totalGifs: null
 }
 
 export const handleLoading = (state = initialState, action) => {
@@ -46,7 +47,8 @@ export const getGifs = (state = initialState, action) => {
       return {
         ...state,
         gifList: [...state.gifList, ...action.payload.data],
-        offset: action.payload.offset
+        totalGifs: action.payload.totalGifs,
+        offset: state.offset + 6
       }
     case 'CHANGE_SEARCH':
       return {

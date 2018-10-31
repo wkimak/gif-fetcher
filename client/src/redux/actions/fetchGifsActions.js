@@ -19,23 +19,26 @@ export const handleError = (isError) => {
 }
 
 export const handleSearch = (searchTerm, offset) => (dispatch) => {
+  dispatch(handleLoading(true));
   dispatch({ type: CHANGE_SEARCH, payload: searchTerm })
-  dispatch(fetchGifs(searchTerm, offset));
+  dispatch(fetchGifs(searchTerm, offset, () => {
+     dispatch(handleLoading(false))
+  }));
 }
 
 
-export const fetchGifs = (searchTerm, offset) => async (dispatch) => {
-  console.log('OFFSET', offset)
-    dispatch(handleLoading(true));
+export const fetchGifs = (searchTerm, offset, callback) => async (dispatch) => {
     const response = await axios.get('/api/gifs', { params: { searchTerm, offset }});
-    console.log(response);
     if(!response.data.data.length){
       dispatch(handleError(true))
     } else {
+
       dispatch({ type: FETCH_GIFS, payload: { data: response.data.data, 
-                                              offset: offset } })
+                                              offset: offset,
+                                              totalGifs: response.data.pagination.total_count,
+                                              scrolling: false } })
       dispatch(handleError(false));
     }
-    dispatch(handleLoading(false))
+        callback();
 }
 

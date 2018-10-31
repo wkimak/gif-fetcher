@@ -10,7 +10,9 @@ const mapStateToProps = (state) => ({
    isError: state.handleError.isError,
    userId: state.getUserId.userId,
    searchTerm: state.getGifs.searchTerm,
-   offset: state.getGifs.offset
+   totalGifs: state.getGifs.totalGifs,
+   offset: state.getGifs.offset,
+   scrolling: state.getGifs.scrolling
 })
 
 
