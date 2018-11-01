@@ -14,7 +14,8 @@ CREATE TABLE users ( id_user int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
 CREATE TABLE favorites ( id_favorite int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	                     gif_id VARCHAR(30) NOT NULL,
-                         url VARCHAR(255) NOT NULL
+                         still_url VARCHAR(255) NOT NULL,
+                         video_url VARCHAR(255) NOT NULL
    					   );
 
 CREATE TABLE users_favorites ( id_userFavorite int NOT NULL AUTO_INCREMENT PRIMARY KEY,
