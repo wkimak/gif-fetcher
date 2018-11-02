@@ -4,12 +4,14 @@ console.log(database.mysqlEndpoint)
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host : database.mysqlEndpoint,
-    user : database.rdsUser,
-    port: database.rdsPort,
-    password : database.rdsPassword,
-    database : database.rdsName
+    host: 's54ham9zz83czkff.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    username: 'kycoslt1dbsc9dyb',
+    password: ' o86xs5dheasyy6os',
+    port: 3306,
+    database: 'aja1irdaehd1rwng'
   }
 });
 
 module.exports = { knex };
+
+
