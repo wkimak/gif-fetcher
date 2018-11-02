@@ -7,3 +7,4 @@ exports.database = {
   rdsPassword: process.env.RDS_PASSWORD,
   rdsName: process.env.RDS_NAME
 };
+
