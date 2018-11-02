@@ -119,6 +119,7 @@ body {
 	width: 80px;
 	background-color: rgb(50,206,206);
 	color: white;
+	cursor: pointer;
 }
 
 /* --- Sign Out --- */
@@ -360,6 +361,7 @@ body {
 	color: white;
 	font-size: 26px;
 	font-family: 'Nunito', sans-serif;
+	cursor: pointer;
 }
 
 .open_favorites_btn:focus {
