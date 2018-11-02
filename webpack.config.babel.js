@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-
 module.exports = {
   entry: './client/src/index.jsx',
   output: {
@@ -10,12 +9,12 @@ module.exports = {
     filename: 'bundle.js'
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin({ test: /\.jsx(\?.*)?$/i })]
+    minimizer: [new UglifyJsPlugin({ test: /\.js[a-z]?(\?.*)?$/i})]
   },
   module: {
     rules: [
           {
-            test: /\.jsx/,
+            test: /\.(jsx|js)/,
             exclude: /node_modules/,
             use: {
               loader: 'babel-loader',
