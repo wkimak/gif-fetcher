@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchGifs, handleLoading, handleEndResults } from '../redux/actions/gifFeedActions.js';
+import { fetchGifs, handleEndResults } from '../redux/actions/gifFeedActions.js';
 import { postFavorite, fetchFavorites } from '../redux/actions/favoritesActions.js';
 
 import Loading from '../components/gifFeed/LoadingComponent.jsx';
