@@ -1,16 +1,22 @@
 const { database } = require('../../config.js');
+console.log(database.mysqlEndpoint)
 
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host : 'giffetcherinstance.cv4ydzzllfqa.us-east-2.rds.amazonaws.com',
-    user : 'wkimak',
-    port: 5431,
-    password : '',
-    database : 'gifFetcher'
+    host : database.mysqlEndpoint,
+    user : database.rdsUser,
+    port: database.rdsPort,
+    password : database.rdsPassword,
+    database : database.rdsName
   }
 });
 
 module.exports = { knex };
 
 
+  // mysqlEndpoint: process.env.RDS_ENDPOINT,
+  // rdsUser: process.env.RDS_USER,
+  // rdsPort: process.env.RDS_PORT,
+  // rdsPassword: process.env.RDS_PASSWORD,
+  // rdsName: process.env.RDS_NAME

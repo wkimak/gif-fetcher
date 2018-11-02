@@ -1,10 +1,8 @@
 import React from 'react';
 import FavoriteComponent from './FavoriteComponent.jsx';
 
-const FavoriteItems = ({ userId, favoritesList, deleteFavorite, fetchFavorites, favoritesOpen, toggleFavoritesComponent }) => (
-  <div className={favoritesOpen ? 'favorites_overlay favorites_overlay_open' : null }>
-
-    <div className={favoritesOpen ? 'favorites_container_open favorites_container' : 'favorites_container_closed favorites_container'}>
+const FavoriteItems = ({ userId, favoritesList, deleteFavorite, favoritesOpen, toggleFavoritesComponent }) => (
+    <div className={favoritesOpen ? 'grow_favorites_container favorites_container' : 'favorites_container'}>
       <button className='open_favorites_btn' onClick={ () => toggleFavoritesComponent(userId) }>Favorites</button>
       <div className='favorites_items_container'>
         { favoritesList.length ? favoritesList.map((item, i) => {
@@ -13,14 +11,13 @@ const FavoriteItems = ({ userId, favoritesList, deleteFavorite, fetchFavorites, 
                                  index={ i } 
                                  userId={ userId } 
                                  gifId={ item.gif_id } 
-                                 stillUrl={ item.stillUrl }
-                                 videoUrl={ item.videoUrl } 
+                                 stillUrl={ item.still_url }
+                                 videoUrl={ item.video_url } 
                                  deleteFavorite={ deleteFavorite } />
             );
         }) : null}
       </div>
     </div>
-  </div>
 )
 
 export default FavoriteItems;

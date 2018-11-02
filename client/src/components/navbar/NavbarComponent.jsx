@@ -1,19 +1,18 @@
 import React from 'react';
 import Login from './login/LoginComponent.jsx';
 import LoginMessage from './login/LoginMessageComponent.jsx';
+import ErrorMessage from '../ErrorMessageComponent.jsx';
 
-const Navbar = ({ handleLogin, handleSignout, username, userId, showLoginMessage }) => (
-  <div className='navbar_container'>
+const Navbar = ({ handleLogin, handleSignout, username, userId, showLoginMessage, errorMessage, navbarHeight }) => (
+  <div className={navbarHeight === 100 ? 'navbar_container' : 'small_navbar' }>
     <img src='https://cdn.stashinvest.com/assets/images/globals/logo.svg' />
+     { showLoginMessage ? <LoginMessage /> : null }
   { !userId ?
     <Login handleLogin={ handleLogin } />
     :
-    <div className='welcome_container'>
-      <span> Welcome { username }! </span>
       <button onClick={ () => handleSignout(userId) } className='signout_btn'>Sign Out</button>
-    </div>
   }
-  { showLoginMessage ? <LoginMessage /> : null }
+  { errorMessage ? <ErrorMessage message={ errorMessage } /> : null }
   </div>
 )
 

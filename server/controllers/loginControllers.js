@@ -1,6 +1,6 @@
 const { knex } = require('../database/index.js');
 
-exports.handleSignup = async (req, res) => {
+exports.handleLogin = async (req, res) => {
 
   try {
     const checkExists = await knex.select('id_user').from('users').where('username', req.body.username)

@@ -1,12 +1,11 @@
 import React from 'react';
 
-const TranslateGif = ({ url }) => (
+const WeirdGif = ({ url }) => (
   <div className='translateGif_container'>
   { url ?
     <iframe src={ url }/>
-    : null
-  }
+    : null }
   </div>
 )
 
-export default TranslateGif;
+export default WeirdGif;

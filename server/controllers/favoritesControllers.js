@@ -20,6 +20,7 @@ exports.postFavorites = async (req, res) => {
         res.sendStatus(200);
       } catch {
           console.log('ERROR inserting into favorites/user_favorites table');
+          res.sendStatus(500);
       }
     } else {
         try {
@@ -36,6 +37,7 @@ exports.postFavorites = async (req, res) => {
           res.sendStatus(200);
         } catch {
             console.log('ERROR inserting into user_favorites table');
+            res.sendStatus(500)
         }
     }
   } catch {
@@ -47,24 +49,31 @@ exports.fetchFavorites = async (req, res) => {
   try {
     const favorites = await knex('favorites')
                       .join('users_favorites', 'id_favorite', 'favorite_id')
-                      .select('favorites.gif_id', 'favorites.url')
+                      .select('favorites.gif_id', 'favorites.still_url', 'favorites.video_url')
                       .where('users_favorites.user_id', req.query.userId);
+                      
+
     res.send(favorites);
   } catch {
-      console.log('ERROR fetching favorites');
+      console.error('ERROR fetching favorites');
+      res.sendStatus(500);
   }
 }
 
 exports.deleteFavorites = async (req, res) => {
-  try {
+  console.log(req.query.gifId)
 
+  try {
     const favoriteId = await knex.select('id_favorite').from('favorites').where('gif_id', req.query.gifId);
-    
+    console.log(favoriteId)
+
     const deletedFavorite = await knex('users_favorites')
                                   .where('user_id', req.query.userId)
                                   .andWhere('favorite_id', favoriteId[0].id_favorite)
                                   .del();
+      res.sendStatus(200);
   } catch {
       console.log('ERROR deleting favorite from users_favorites table');
+      res.sendStatus(500);
   }
 }

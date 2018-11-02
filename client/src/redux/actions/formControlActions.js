@@ -1,4 +1,5 @@
-import { CHOOSE_SEARCH_TYPE, ADJUST_WEIRDNESS } from '../constants/constants.js';
+import { CHOOSE_SEARCH_TYPE, 
+         ADJUST_WEIRDNESS } from '../constants/formControlConstants.js';
 
 export const handleSearchType = (searchType) => (dispatch) => {
   dispatch({ type: CHOOSE_SEARCH_TYPE, payload: searchType })

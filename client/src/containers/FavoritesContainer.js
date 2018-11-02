@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FavoriteItemsComponent from '../components/favorites/FavoriteItemsComponent.jsx';
-import { deleteFavorite, fetchFavorites, toggleFavoritesComponent } from '../redux/actions/favoriteActions.js';
+import { deleteFavorite, fetchFavorites, toggleFavoritesComponent } from '../redux/actions/favoritesActions.js';
 
 const mapStateToProps = (state) => ({
   favoritesList: state.handleFavorites.favoritesList,

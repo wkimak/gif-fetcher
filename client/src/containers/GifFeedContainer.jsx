@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { fetchGifs, handleLoading, handleEndResults } from '../redux/actions/fetchGifsActions.js';
-import { postFavorite, fetchFavorites } from '../redux/actions/favoriteActions.js';
 
+import { fetchGifs, handleLoading, handleEndResults } from '../redux/actions/gifFeedActions.js';
+import { postFavorite, fetchFavorites } from '../redux/actions/favoritesActions.js';
+
+import Loading from '../components/gifFeed/LoadingComponent.jsx';
 import GifItems from '../components/gifFeed/GifItemsComponent.jsx';
 import EndResults from '../components/gifFeed/EndResultsComponent.jsx';
 
@@ -15,6 +17,7 @@ class InfiniteScroll extends Component {
     if(this.props.userId) {
        this.props.fetchFavorites(this.props.userId);
     }
+
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -38,6 +41,7 @@ class InfiniteScroll extends Component {
     } 
     if(this.state.scrolling === true) return;
     const lastGif = document.querySelector('.gifs_container > div:last-child');
+    if(!lastGif) return;
     const lastGifOffset = lastGif.offsetTop + lastGif.clientHeight;
     const pageOffset = window.pageYOffset + window.innerHeight;
    
@@ -47,14 +51,14 @@ class InfiniteScroll extends Component {
   }
 
   render() {
-    const { offset, userId, gifList, isLoading, isError, postFavorite, endResults } = this.props;
+    const { offset, userId, gifList, isLoading, postFavorite, endResults } = this.props;
     return (
       <Fragment>
-        <GifItems userId={ userId } 
+        <GifItems isLoading={ isLoading } 
+                  userId={ userId } 
                   gifList={ gifList } 
-                  isLoading={ isLoading } 
-                  isError={ isError } 
                   postFavorite={ postFavorite } />
+        { isLoading ? <Loading /> : null }
         { endResults ? <EndResults /> : null }
       </Fragment>
     )

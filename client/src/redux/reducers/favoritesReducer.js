@@ -1,22 +1,36 @@
 const initialState = {
   favoritesList: [],
+  currentGifIds: {},
   favoritesOpen: false,
   showLoginMessage: false
 }
 
 export const handleFavorites = (state = initialState, action) => {
   switch(action.type) {
-    case 'POST_FAVORITE':
+    case 'POST_FAVORITE_SUCCESS':
+    
+     if(!state.currentGifIds.hasOwnProperty(action.payload.gifId)) {
+       state.currentGifIds[action.payload.gifId] = true;
+     } else {
+      return state;
+     }
+
       return {
         ...state,
-        favoritesList: [...state.favoritesList, { gif_id: action.payload.gif_id, stillUrl: action.payload.stillUrl, videoUrl: action.payload.videoUrl }]
+        favoritesList: [...state.favoritesList, { gif_id: action.payload.gifId, still_url: action.payload.stillUrl, video_url: action.payload.videoUrl }]
       }
-    case 'FETCH_FAVORITES':
+
+    case 'FETCH_FAVORITES_SUCCESS':
+      action.payload.map((favorite) => {
+        if(!state.currentGifIds.hasOwnProperty(favorite.gif_id)) {
+           state.currentGifIds[favorite.gif_id] = true;
+        }
+      })
       return {
         ...state,
         favoritesList: action.payload
       }
-    case 'DELETE_FAVORITE':
+    case 'DELETE_FAVORITE_SUCCESS':
       return {
         ...state,
         favoritesList: [...state.favoritesList.slice(0, action.payload.arrayIndex),

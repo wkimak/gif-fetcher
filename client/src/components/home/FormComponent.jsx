@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Form extends Component {
   
   state={ searchTerm: '' }
@@ -16,7 +15,7 @@ class Form extends Component {
     if(this.props.searchType === 'search') {
       this.props.handleSearch(this.state.searchTerm, 0);
     } else {
-      this.props.handleTranslate(this.state.searchTerm, this.props.weirdLevel);
+      this.props.handleWeirdSearch(this.state.searchTerm, this.props.weirdLevel);
     }
   }
 

@@ -23,14 +23,12 @@ class FavoriteComponent extends Component {
   render() {
     const { stillUrl, videoUrl, deleteFavorite, userId, gifId, index } = this.props;
     return (
-      <div className='gif_container' onMouseOver={ this.handleMouseOver } onMouseLeave={ this.handleMouseOut }>
+      <div className='favorite_container' onMouseOver={ this.handleMouseOver } onMouseLeave={ this.handleMouseOut }>
         { this.state.isHovered && userId ? 
           <Hover stillUrl={ stillUrl} 
                  userId={ userId} 
                  gifId={ gifId}  
-                 toggleVideo={ () => {
-                   this.toggleVideo();
-                 }}>
+                 toggleVideo={ this.toggleVideo }>
                 { () => <i onClick={ () => deleteFavorite(userId, gifId, index) } className="fas fa-trash-alt fa-lg"></i> } 
           </Hover>       
           : null }

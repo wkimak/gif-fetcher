@@ -1,59 +1,51 @@
 import axios from 'axios';
-import { FETCH_GIFS, CHANGE_QUERY, DISPLAY_SPINNER, HIDE_SPINNER, DISPLAY_ERROR, HIDE_ERROR, END_RESULTS, FETCH_TRANSLATE_GIF } from '../constants/constants.js';
+import { FETCH_GIFS_SUCCESS, 
+  FETCH_GIFS_FAILURE,
+  CHANGE_QUERY, 
+  DISPLAY_SPINNER, 
+  END_RESULTS, 
+  FETCH_TRANSLATE_GIF } from '../constants/gifFeedConstants.js';
 
-export const handleLoading = (isLoading) => {
-  if(isLoading) {
-    return { type: DISPLAY_SPINNER }
-  } else {
-    return { type: HIDE_SPINNER }
-  }
-}
 
-export const handleError = (isError) => {
-  if(isError) {
-    return { type: DISPLAY_ERROR }
-  } else {
-    return { type: HIDE_ERROR }
-  }
-}
 
-export const handleTranslate = (searchTerm, weirdLevel) => async (dispatch) => {
+export const handleWeirdSearch = (searchTerm, weirdLevel) => async (dispatch) => {
   try {
     const response = await axios.get('/api/gifs', { params: { searchTerm, weirdLevel }})
     dispatch({ type: FETCH_TRANSLATE_GIF, payload: response.data.data.images.downsized_large.url })
   } catch {
-    console.log('ERROR getting translate search');
+     dispatch({ type: FETCH_GIFS_FAILURE, payload: 'Error fetching gif, please try again.' })
   }
 }
 
 export const handleSearch = (searchTerm, offset) => (dispatch) => {
   dispatch({ type: CHANGE_QUERY, payload: searchTerm })
   dispatch({ type: END_RESULTS, payload: false })
-  dispatch(fetchGifs(searchTerm, offset, () => {
-     dispatch(handleLoading(false))
-  }));
+  dispatch(fetchGifs(searchTerm, offset));
 }
 
 
 export const fetchGifs = (searchTerm, offset, callback) => async (dispatch) => {
-    dispatch(handleLoading(true));
+    try {
+    dispatch({ type: DISPLAY_SPINNER, payload: true })
     const response = await axios.get('/api/gifs', { params: { searchTerm, offset }});
     if(!response.data.data.length){
-      dispatch(handleError(true))
+      dispatch({ type: FETCH_GIFS_FAILURE, payload: 'No results found'})
     } else {
-
-      dispatch({ type: FETCH_GIFS, payload: { data: response.data.data, 
+      dispatch({ type: FETCH_GIFS_SUCCESS, payload: { data: response.data.data, 
                                               offset: offset,
                                               totalGifs: response.data.pagination.total_count,
                                               scrolling: false } })
-      dispatch(handleError(false));
+     
     }
-    dispatch(handleLoading(false));
-        callback();
+       dispatch({ type: DISPLAY_SPINNER, payload: false });
+       if (typeof callback === 'function') callback();
+    } catch(err) {
+    console.log(err)
+      dispatch({ type: FETCH_GIFS_FAILURE, payload: 'Error fetching gifs, please try again.' })
+    }
 }
 
 export const handleEndResults = () => (dispatch) => {
-  dispatch(handleLoading(false));
   dispatch({ type: END_RESULTS, payload: true });
 }
 

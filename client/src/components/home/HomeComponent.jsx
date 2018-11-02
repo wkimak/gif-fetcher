@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 import Form from './FormComponent.jsx';
-import ErrorMessage from './ErrorComponent.jsx';
 import GifFeedContainer from '../../containers/GifFeedContainer.jsx';
 import FormControls from './FormControlsComponent.jsx';
-import TranslateGif from './TranslateGifComponent.jsx';
+import WeirdGif from './WeirdGifComponent.jsx';
+import ErrorMessage from '../ErrorMessageComponent.jsx';
 
 
-const Home = ({ handleSearch, handleTranslate, handleSearchType, isError, searchType, translateGif , handleWeirdness, weirdLevel }) => (
+const Home = ({ handleSearch, handleWeirdSearch, handleSearchType, searchType, translateGif , handleWeirdness, weirdLevel, errorMessage }) => (
   <section>
-    <Form handleSearch={ handleSearch } handleTranslate={ handleTranslate } searchType={ searchType } weirdLevel={ weirdLevel } />
-    <FormControls handleSearchType={ handleSearchType } searchType={ searchType } handleWeirdness={ handleWeirdness } />
-    { isError ? <ErrorMessage /> : null }
+    <Form handleSearch={ handleSearch } 
+          handleWeirdSearch={ handleWeirdSearch } 
+          searchType={ searchType } 
+          weirdLevel={ weirdLevel } />
+    <FormControls handleSearchType={ handleSearchType } 
+                  searchType={ searchType } 
+                  handleWeirdness={ handleWeirdness } />
+
+    { errorMessage ? <ErrorMessage message={ errorMessage }/> : null }
+    
     {searchType === 'translate' ? 
-    <TranslateGif url={ translateGif } />
+    <WeirdGif url={ translateGif } />
     :
     <GifFeedContainer />
     }
+
   </section>      
 )
   

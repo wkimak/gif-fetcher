@@ -9,15 +9,26 @@ const FormControls = ({ handleSearchType, handleWeirdness, searchType }) => {
   }
 
   return (
-  <div className='form_controls_container'>
-    <div className='controls_btn_container'>
-      <button className={ searchType === 'search' ? null : 'control_btn_selected' } onClick={ () => handleSearchType('search') }>Search</button>
-      <button className={ searchType === 'translate' ? null : 'control_btn_selected' } onClick = { () => handleSearchType('translate') }>Translate</button>
+    <div className='form_controls_container'>
+      <div className='controls_btn_container'>
+        <button className={ searchType === 'search' ? 'control_btn_selected' : 'control_btn_unselected' } 
+                onClick={ () => handleSearchType('search') }>Term Search</button>
+        <button className={ searchType === 'translate' ? 'control_btn_selected' : 'control_btn_unselected' } 
+                onClick = { () => handleSearchType('translate') }>Weird Search</button>
+      </div>
+      {searchType === 'translate' ?
+        <div className='slider_container'>
+          <p className='weird_level'> Weirdness Level </p>
+          <Slider max={ 10 }  
+                  onChange={ handleChange }
+                  defaultValue={ 7 }
+                  marks={ {0: 0, 10: 10} }
+                  railStyle={{
+                    width: '100%'
+                  }} />
+        </div>
+      : null }
     </div>
-    <Slider max={ 10 } 
-            marks={ {0: 0 ,1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10} }   
-            onChange={ handleChange } />
-  </div>
   )
 }
 

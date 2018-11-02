@@ -3,7 +3,7 @@ import Hover from '../HoverComponent.jsx';
 
 class Gif extends Component {
 
-  state={ isHovered: false, isVideo: false }
+  state={ isHovered: false, isVideo: false, addedAsFavorite: false }
   
   toggleVideo = () => {
     this.setState({
@@ -19,26 +19,26 @@ class Gif extends Component {
     this.setState({ isHovered: false })
   }
 
-
   render() {
     const { userId, gifId, stillUrl, videoUrl, postFavorite } = this.props;
     return (
-      <div className='gif_container' onMouseOver={ this.handleMouseOver } onMouseLeave={ this.handleMouseOut }>
+      <div className='gif_container' 
+           onMouseOver={ this.handleMouseOver } 
+           onMouseLeave={ this.handleMouseOut }>
         { this.state.isHovered ? 
           <Hover stillUrl={ stillUrl } 
+                 isVideo={ this.state.isVideo }
                  userId={ userId} 
                  gifId={ gifId}  
                  toggleVideo={ () => {
                    this.toggleVideo();
                  }}>
-                { () =>  <button onClick={ () => this.props.postFavorite(userId, gifId, stillUrl, videoUrl) }>
-                            Save to Favorites
-                         </button> 
+                { () =>  <i onClick={ () =>  postFavorite(userId, gifId, stillUrl, videoUrl) } 
+                            className='fas fa-heart fa-lg'></i>
                       } 
           </Hover>       
           : null }
-        <iframe src={ this.state.isVideo ? videoUrl : stillUrl }>
-        </iframe> 
+        <iframe src={ this.state.isVideo ? videoUrl : stillUrl }></iframe> 
       </div>
     )
   }

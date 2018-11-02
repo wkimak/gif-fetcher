@@ -2,11 +2,11 @@ const initialState = {
   gifList: [],
   translateGif: null,
   isLoading: false,
-  isError: false,
   searchTerm: null,
   offset: 0,
   totalGifs: 0,
-  endResults: false
+  endResults: false,
+  errorMessage: null
 }
 
 export const handleLoading = (state = initialState, action) => {
@@ -14,35 +14,13 @@ export const handleLoading = (state = initialState, action) => {
     case 'DISPLAY_SPINNER':
       return {
         ...state,
-        isLoading: true
-      }
-    case 'HIDE_SPINNER':
-      return {
-        ...state,
-        isLoading: false
+        isLoading: action.payload
       }
       default:
         return state;
    }
 }
 
-export const handleError = (state = initialState, action) => {
-  switch(action.type) {
-    case 'DISPLAY_ERROR':
-      return {
-        ...state,
-        isError: true,
-        isLoading: false
-      }
-    case 'HIDE_ERROR':
-      return {
-        ...state,
-        isError: false
-      }  
-      default:
-        return state;
-  }
-}
 
 export const handleEnd = (state = initialState, action) => {
   switch(action.type) {
@@ -58,12 +36,13 @@ export const handleEnd = (state = initialState, action) => {
 
 export const getGifs = (state = initialState, action) => {
   switch(action.type) {
-    case 'FETCH_GIFS':
+    case 'FETCH_GIFS_SUCCESS':
       return {
         ...state,
         gifList: [...state.gifList, ...action.payload.data],
         totalGifs: action.payload.totalGifs,
-        offset: state.offset + 6
+        offset: state.offset + 6,
+        errorMessage: null
       }
     case 'CHANGE_QUERY':
       return {
@@ -73,10 +52,15 @@ export const getGifs = (state = initialState, action) => {
         offset: 0
       }
     case 'FETCH_TRANSLATE_GIF':
-    console.log('TRANSLATE GIF', action.payload)
       return {
         ...state,
-        translateGif: action.payload
+        translateGif: action.payload,
+        errorMessage: null
+      }
+    case 'FETCH_GIFS_FAILURE':
+      return {
+        ...state,
+        errorMessage: action.payload
       }
     default:
       return state;
