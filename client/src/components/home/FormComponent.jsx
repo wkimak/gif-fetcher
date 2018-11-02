@@ -17,6 +17,7 @@ class Form extends Component {
     } else {
       this.props.handleWeirdSearch(this.state.searchTerm, this.props.weirdLevel);
     }
+     this.setState({ searchTerm: ''})
   }
 
   render() {

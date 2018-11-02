@@ -8,6 +8,7 @@
 
 body {
 	padding-bottom: 30px;
+	overflow: hidden;
 }
 
 .login_message, .hover_container, .gif_container, .open_favorites_btn {
@@ -259,6 +260,7 @@ body {
 	width: 400px;
 	position: relative;
 	margin: 10px;
+
 }
 
 /* ----- Spinner --- */
@@ -333,6 +335,7 @@ body {
 	height: 100vh;
 	top: 50px;
 	right: -94%;
+	overflow-y: scroll;
 }
 
 /* Item within favorites container */
