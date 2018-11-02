@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import axios from 'axios';
 import { FETCH_GIFS_SUCCESS, 
   FETCH_GIFS_FAILURE,
