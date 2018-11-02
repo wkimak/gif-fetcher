@@ -14,8 +14,7 @@ const Navbar = ({ handleLogin, handleSignout, username, userId, showLoginMessage
         <button onClick={ () => handleSignout(userId) } 
                 className='signout_btn'>Sign Out</button>
       }
-
-      { errorMessage ? <ErrorMessage message={ errorMessage } /> : null }
+      { navbarHeight === 50 ? <a href='#app'><i class="fas fa-arrow-up fa-lg bounce_arrow"></i></a> : null }
   </div>
 )
 

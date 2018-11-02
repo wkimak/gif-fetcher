@@ -48,6 +48,7 @@ body {
 }
 
 
+
 /* ---------------- Navbar ----------------- */
 .navbar_container {
 	height: 100px;
@@ -78,6 +79,27 @@ body {
 	margin-left: 50px;
 }
 
+.fa-arrow-up {
+	color: red;
+	height: 50px;
+	width: 50px;
+	cursor: pointer;
+	position: relative;
+}
+
+@keyframes bounce {
+	0% { top: 0; }
+	25% { top: 3px; }
+	50% { top: 5px; }
+	75% { top: 3px; }
+	100% { top: 0; }
+}
+
+.bounce_arrow {
+	animation-name: bounce;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;;
+}
 
 
 /* ---- Login ---- */
@@ -140,6 +162,7 @@ body {
 	flex: 1;
 	height: 40px;
 	padding-left: 20px;
+	font-size: 20px;
 }
 
 .form_container i {
@@ -172,6 +195,8 @@ body {
 	margin: auto;
 	font-size: 22px;
 	border-radius: 5px;
+	font-family: 'Nunito', sans-serif;
+	cursor: pointer;
 }
 
 .form_controls_container button:focus {
@@ -201,7 +226,7 @@ body {
 /* ------------------ Gifs Container ---------------- */
 .gifs_container {
 	width: 90%;
-	min-height: 70vh;
+	min-height: 50vh;
 	margin-top: 20px;
 	display: flex;
 	flex-wrap: wrap;
@@ -263,7 +288,7 @@ body {
 	color: white;
 }
 
-
+/* ----- Hover Components Icons ----- */
 .fa-play-circle, .fa-pause-circle {
 	height: 20px;
 	width: 20px;
@@ -376,12 +401,12 @@ body {
 	}
 
 	.controls_btn_container {
-		width: 800px;
+		width: 750px;
 	}
 
 	.controls_btn_container button {
 		display: inline-block;
-		width: 350px;
-		margin-left: 35px;
+		width: 300px;
+		margin-left: 40px;
 	}
 }
