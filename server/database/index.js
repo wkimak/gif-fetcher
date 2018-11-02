@@ -1,14 +1,18 @@
 const { database } = require('../../config.js');
+const knex = require('./knexfile.js');
+// var mysql = require('mysql');
+// var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
-const knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host : database.mysqlEndpoint,
-    user : database.rdsUser,
-    port: database.rdsPort,
-    password : database.rdsPassword,
-    database : database.rdsName
-  }
-});
+// connection.connect();
+
+// connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+//   if (err) throw err;
+
+//   console.log('The solution is: ', rows[0].solution);
+// });
+
+// connection.end();
 
 module.exports = { knex };
+
+
