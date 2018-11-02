@@ -5,7 +5,7 @@ const FavoriteItems = ({ userId, favoritesList, deleteFavorite, fetchFavorites, 
   <div className={favoritesOpen ? 'favorites_overlay favorites_overlay_open' : null }>
 
     <div className={favoritesOpen ? 'favorites_container_open favorites_container' : 'favorites_container_closed favorites_container'}>
-      <button className='open_favorites_btn' onClick={ () => { userId ? toggleFavoritesComponent()  : null }}>Favorites</button>
+      <button className='open_favorites_btn' onClick={ () => toggleFavoritesComponent(userId) }>Favorites</button>
       <div className='favorites_items_container'>
         { favoritesList.length ? favoritesList.map((item, i) => {
             return (
@@ -13,7 +13,8 @@ const FavoriteItems = ({ userId, favoritesList, deleteFavorite, fetchFavorites, 
                                  index={ i } 
                                  userId={ userId } 
                                  gifId={ item.gif_id } 
-                                 url={ item.url } 
+                                 stillUrl={ item.stillUrl }
+                                 videoUrl={ item.videoUrl } 
                                  deleteFavorite={ deleteFavorite } />
             );
         }) : null}

@@ -3,13 +3,14 @@ const { knex } = require('../database/index.js');
 exports.postFavorites = async (req, res) => {
   try {
     const gifId = req.body.gifId;
-    const gifUrl = req.body.gifUrl;
+    const stillUrl = req.body.stillUrl;
+    const videoUrl = req.body.videoUrl;
     
     const checkExists = await knex.select('gif_id').from('favorites').where('gif_id', gifId);
 
     if(!checkExists.length) {
       try {
-        const insertFavorite = await knex('favorites').insert({ gif_id: gifId, url: gifUrl }); 
+        const insertFavorite = await knex('favorites').insert({ gif_id: gifId, still_url: stillUrl, video_url: videoUrl }); 
         const fetchFavoriteId = await knex.select('id_favorite')
                                           .from('favorites').where('gif_id', gifId);
         const insertJoinTable = await knex('users_favorites')

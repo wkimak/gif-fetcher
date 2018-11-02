@@ -16,9 +16,13 @@ module.exports = {
             use: {
               loader: 'babel-loader',
             }
+          },
+          {
+            test: /\.(css|svg)$/,
+            use: ['style-loader', 'css-loader']
           }
         ]
-  },
+      },
   plugins: [
      new HtmlWebpackPlugin({
         template: './client/src/index.html'

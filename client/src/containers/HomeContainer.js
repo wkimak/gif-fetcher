@@ -1,21 +1,15 @@
 import { connect } from 'react-redux';
-import { fetchGifs, handleSearch } from '../redux/actions/fetchGifsActions.js';
-import { postFavorite, fetchFavorites } from '../redux/actions/favoriteActions.js';
+import { handleSearch, handleTranslate } from '../redux/actions/fetchGifsActions.js';
+import { handleSearchType, handleWeirdness } from '../redux/actions/formControlActions.js';
 import Home from '../components/home/HomeComponent.jsx';
 
-
 const mapStateToProps = (state) => ({
-   gifList: state.getGifs.gifList,
-   isLoading: state.handleLoading.isLoading,
-   isError: state.handleError.isError,
-   userId: state.getUserId.userId,
-   searchTerm: state.getGifs.searchTerm,
-   totalGifs: state.getGifs.totalGifs,
-   offset: state.getGifs.offset,
-   scrolling: state.getGifs.scrolling
+  isError: state.handleError.isError,
+  searchType: state.switchSearchType.searchType,
+  translateGif: state.getGifs.translateGif,
+  weirdLevel: state.handleWeirdness.weirdLevel
 })
 
-
-const mapDispatchToProps = { fetchGifs, handleSearch, postFavorite, fetchFavorites }
+const mapDispatchToProps = { handleSearch, handleTranslate, handleSearchType, handleWeirdness }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

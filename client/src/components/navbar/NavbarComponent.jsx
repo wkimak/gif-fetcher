@@ -1,8 +1,10 @@
 import React from 'react';
 import Login from './login/LoginComponent.jsx';
+import LoginMessage from './login/LoginMessageComponent.jsx';
 
-const Navbar = ({ handleLogin, handleSignout, username, userId }) => (
+const Navbar = ({ handleLogin, handleSignout, username, userId, showLoginMessage }) => (
   <div className='navbar_container'>
+    <img src='https://cdn.stashinvest.com/assets/images/globals/logo.svg' />
   { !userId ?
     <Login handleLogin={ handleLogin } />
     :
@@ -11,6 +13,7 @@ const Navbar = ({ handleLogin, handleSignout, username, userId }) => (
       <button onClick={ () => handleSignout(userId) } className='signout_btn'>Sign Out</button>
     </div>
   }
+  { showLoginMessage ? <LoginMessage /> : null }
   </div>
 )
 

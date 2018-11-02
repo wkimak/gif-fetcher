@@ -4,20 +4,66 @@
 	padding: 0;
 }
 
-/* ----- Navbar ----- */
+/* -------- General Styles -------- */
+
+body {
+	padding-bottom: 30px;
+}
+
+.login_message, .hover_container, .gif_container, .open_favorites_btn {
+	position: absolute;
+}
+
+.login_message, .form_container, .form_container input, .gifs_container, 
+.end_results, .hover_container button, .gif_container button, .favorite_iframe {
+	margin: auto;
+}
+
+.navbar_container, .favorites_overlay, .favorites_container {
+	position: fixed;
+}
+.navbar_container, .form_container i, .hover_container button {
+    background-color: #351a72;
+}
+
+.end_results, .hover_container div, .open_favorites_btn {
+	background-color: rgb(50,206,206);
+}
+
+.navbar_container, .hover_container, .hover_container div, .favorites_overlay_open,
+.favorite_iframe {
+	width: 100%;
+}
+
+.open_favorites_btn, .end_results {
+	font-weight: bold;
+}
+
+.hover_container button, .favorite_iframe {
+	display: block;
+}
+
+.login_form, .welcome_container, .favorites_items_container {
+	float: right;
+}
+
+
+/* ---------------- Navbar ----------------- */
 .navbar_container {
 	height: 50px;
-	background-color: #351a72;
 	padding-top: 10px;
-	position: fixed;
 	top: 0;
-	width: 100%;
 	z-index: 1;
 }
 
-/* ---- Login ----- */
+.navbar_container img {
+	height: 30px;
+	width: auto;
+	margin-left: 50px;
+}
+
+/* ---- Login ---- */
 .login_form {
-	float: right;
 	margin-right: 150px;
 }
 
@@ -33,9 +79,8 @@
 	width: 80px;
 }
 
-/* ---- Welcome Container --- */
+/* --- Welcome Container --- */
 .welcome_container {
-  float: right;
   height: 100%;
 }
 
@@ -46,6 +91,7 @@
 	font-size: 26px;
 }
 
+/* --- Sign Out --- */
 .signout_btn {
 	background-color: red;
 	height: 25px;
@@ -55,26 +101,22 @@
 
 /* ---- Login Message --- */
 .login_message {
-	position: absolute;
-	right: 20px;
+	right: 10px;
 	top: 60px;
 	font-size: 24px;
 	height: 180px;
 	width: 150px;
-	margin: auto;
-	border: 2px solid rgb(50,206,206);
+	border: 2px solid red;
 	border-radius: 5px;
 	padding: 10px;
 	box-shadow: 2px 2px 5px black;
 }
 
 
-
-/* ----- Form ----- */
+/* ----------------- Form ----------------- */
 .form_container {
 	width: 60%;
 	height: 40px;
-	margin: auto;
 	margin-top: 70px;
 	display: flex;
 	align-items: center;
@@ -84,31 +126,66 @@
 
 .form_container input {
 	flex: 1;
-	margin: auto;
 	height: 40px;
 }
 
 .form_container i {
 	padding: 12px;
 	height: 40px;
-	background-color: #351a72;
 	color: white;
 	cursor: pointer;
 }
 
+/* ----- Form Controls ---- */
+.form_controls_container {
+	background-color: #351a72;
+	width: 60%;
+	height: 100px;
+	margin: auto;
+	padding-top: 15px;
+}
 
-/* ----- Gifs Container ---- */
+.controls_btn_container {
+	width: 58%;
+	margin: auto;
+}
+
+.form_controls_container button {
+    background-color: rgb(50,206,206);
+    color: white;
+	display: inline-block;
+	width: 175px;
+	height: 30px;
+	margin: auto;
+	margin-right: 20px;
+	margin-left: 20px;
+	font-size: 22px;
+}
+
+.form_controls_container button:focus {
+	outline: none;
+}
+
+.control_btn_selected {
+	box-shadow: 5px 5px 20px black;
+}
+
+.slider {
+	color: black;
+}
+
+/* ------------------ Gifs Container ---------------- */
 .gifs_container {
 	width: 80%;
-	height: 800px;
-	margin: auto;
+	min-height: 90vh;
 	margin-top: 20px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	padding-bottom: 50px;
 }
 
-/* ------ Gifs ----- */
+/* --- Individual Gifs --- */
 .gif_container {
 	height: 300px;
 	margin: 10px;
@@ -119,37 +196,58 @@
 	height: 300px;
 }
 
-/* ----- Hover Component ----- */
+/* ---- EndResults Component --- */
+.end_results {
+	color: white;
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
+	text-align: center;
+	padding-top: 15px;
+}
+
+/* ------ Hover Component ----- */
 .hover_container {
-	position: absolute;
 	top: 0;
-	height: 300px; 
-	width: 100%;   
+	height: 300px;    
 	background-color: transparent;
 }
 
 .hover_container div {
-	width: 100%;
 	height: 20%;
-	background-color: rgb(50,206,206);
 	padding-top: 10px;
 }
 
 .hover_container button {
-	display: block;
-	margin: auto;
-	background-color: #351a72;
 	width: 200px;
 	height: 40px;
 	color: white;
 }
 
+.gif_container i {
+	top: 25px;
+	left: 25px;
+}
 
-/* ---------- Favorite Items --------- */
+.gif_container button {
+	width: 40%;
+	display: inline-block;
+}
+
+/* --- Translate Gif ---- */
+.translateGif_container iframe{
+	width: 50%;
+	height: 400px;
+	margin: auto;
+	display: block;
+	margin-top: 20px;
+}
+
+
+/* ---------------- Favorite Container -------------- */
 .favorites_overlay {
 	width: 0%;
 	height: 100vh;
-	position: fixed;
 	top: 50px;
 	background-color: rgba(255,255,255,0.9);
 }
@@ -157,19 +255,15 @@
 .favorites_container {
 	width: 600px;
 	height: 100vh;
-	position: fixed;
 	top: 50px;
 }
 
 /* Favorites Closed */
-.favorites_overlay_open {
-	width: 100%;
-}
-
 .favorites_container_closed {
 	right: -540px;
 }
 
+/* Favorites Open */
 .favorites_container_open {
 	right: 0;
 }
@@ -179,39 +273,31 @@
   width: 90%;
   height: 100vh;
   background-color: white;
-  float: right;
   overflow-y: scroll;
   padding: 30px;
 }
 
 
+
 /* ---- Open Favorites Button --- */
 .open_favorites_btn {
 	transform: rotate(-90deg);
-	position: absolute;
 	top: 350px;
 	left: -65px;
 	width: 200px;
 	height: 50px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	background-color: rgb(50,206,206);
 	color: white;
 	font-size: 24px;
-	font-weight: bold;
 }
 
 .open_favorites_btn:focus {
 	outline: none;
 }
 
-
 /* ----- Individual Favorites Component ------ */
-
 .favorite_iframe {
-	display: block;
-	margin: auto;
-	width: 70%;
 	height: 300px;
 	margin-bottom: 10px;
 }

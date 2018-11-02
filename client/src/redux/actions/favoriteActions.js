@@ -1,23 +1,44 @@
 import axios from 'axios';
-import { POST_FAVORITE, FETCH_FAVORITES, DELETE_FAVORITE, OPEN_FAVORITES } from '../constants/constants.js';
+import { POST_FAVORITE, FETCH_FAVORITES, DELETE_FAVORITE, OPEN_FAVORITES, TOGGLE_LOGIN_MESSAGE } from '../constants/constants.js';
 
-export const postFavorite = (userId, gifId, gifUrl) => async (dispatch) => {
+
+
+const toggleLoginMessage = () => (dispatch) => {
+  dispatch({ type: TOGGLE_LOGIN_MESSAGE });
+
+  setTimeout(() => {
+   dispatch({ type: TOGGLE_LOGIN_MESSAGE });
+  }, 3000);
+}
+
+
+export const postFavorite = (userId, gifId, stillUrl, videoUrl) => async (dispatch) => {
   try {
-    const favorite = await axios.post('/api/favorites', { userId, gifId, gifUrl });
-    dispatch({ type: POST_FAVORITE, payload: { gifId, url: gifUrl } })
+    if(userId) {
+      const favorite = await axios.post('/api/favorites', { userId, gifId, stillUrl, videoUrl });
+      dispatch({ type: POST_FAVORITE, payload: { gifId, stillUrl: stillUrl, videoUrl: videoUrl } })
+    } else {
+      dispatch(toggleLoginMessage());
+    }
   } catch {
     console.log('ERROR posting favorite');
   }
 }
 
-export const toggleFavoritesComponent = () => (dispatch) => {
-  dispatch({ type: OPEN_FAVORITES })
+export const toggleFavoritesComponent = (userId) => (dispatch) => {
+  if(userId) {
+    dispatch({ type: OPEN_FAVORITES })
+  } else {
+      dispatch(toggleLoginMessage())
+  }
 }
 
 export const fetchFavorites = (userId) => async (dispatch) => {
   try {
-  const favorites = await axios.get('/api/favorites', { params: { userId } });
-  dispatch({ type: FETCH_FAVORITES, payload: favorites.data })
+    if(userId) {
+      const favorites = await axios.get('/api/favorites', { params: { userId } });
+      dispatch({ type: FETCH_FAVORITES, payload: favorites.data })
+    } 
   } catch {
     console.log('ERROR fetching favorites');
   }

@@ -1,6 +1,7 @@
 const initialState = {
   favoritesList: [],
-  favoritesOpen: false
+  favoritesOpen: false,
+  showLoginMessage: false
 }
 
 export const handleFavorites = (state = initialState, action) => {
@@ -8,7 +9,7 @@ export const handleFavorites = (state = initialState, action) => {
     case 'POST_FAVORITE':
       return {
         ...state,
-        favoritesList: [...state.favoritesList, { gif_id: action.payload.gif_id, url: action.payload.url}]
+        favoritesList: [...state.favoritesList, { gif_id: action.payload.gif_id, stillUrl: action.payload.stillUrl, videoUrl: action.payload.videoUrl }]
       }
     case 'FETCH_FAVORITES':
       return {
@@ -20,6 +21,11 @@ export const handleFavorites = (state = initialState, action) => {
         ...state,
         favoritesList: [...state.favoritesList.slice(0, action.payload.arrayIndex),
                         ...state.favoritesList.slice(action.payload.arrayIndex + 1)]
+      }
+    case 'TOGGLE_LOGIN_MESSAGE':
+      return {
+        ...state,
+        showLoginMessage: !state.showLoginMessage
       }
     default:
       return state

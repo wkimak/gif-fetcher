@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import Form from './FormComponent.jsx';
-import LoginMessage from '../login/LoginMessageComponent.jsx';
-import InfiniteScroll from './InfiniteScrollComponent.jsx';
+import ErrorMessage from './ErrorComponent.jsx';
+import GifFeedContainer from '../../containers/GifFeedContainer.jsx';
+import FormControls from './FormControlsComponent.jsx';
+import TranslateGif from './TranslateGifComponent.jsx';
 
 
-
-const Home = ({ handleSearch, offset, userId, fetchGifs, gifList, isLoading, isError, postFavorite, fetchFavorites }) => (
-      <section>
-        {!userId ?
-        <LoginMessage />
-        : null}
-        <Form handleSearch={ handleSearch } offset={ offset } />
-        <InfiniteScroll userId={ userId } 
-                        gifList={ gifList } 
-                        isLoading={ isLoading } 
-                        isError={ isError } 
-                        postFavorite={ postFavorite }
-                        fetchGifs={ fetchGifs }
-                        offset={ offset }
-                        fetchFavorites={ fetchFavorites } />
-      </section>  
+const Home = ({ handleSearch, handleTranslate, handleSearchType, isError, searchType, translateGif , handleWeirdness, weirdLevel }) => (
+  <section>
+    <Form handleSearch={ handleSearch } handleTranslate={ handleTranslate } searchType={ searchType } weirdLevel={ weirdLevel } />
+    <FormControls handleSearchType={ handleSearchType } searchType={ searchType } handleWeirdness={ handleWeirdness } />
+    { isError ? <ErrorMessage /> : null }
+    {searchType === 'translate' ? 
+    <TranslateGif url={ translateGif } />
+    :
+    <GifFeedContainer />
+    }
+  </section>      
 )
   
 

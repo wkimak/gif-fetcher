@@ -1,22 +1,22 @@
 import React from 'react';
 import Gif from './GifComponent.jsx';
 import Loading from './LoadingComponent.jsx';
-import ErrorMessage from './ErrorComponent.jsx';
+import EndResults from './EndResultsComponent.jsx';
 
 
-const GifItems = ({ userId, gifList, isLoading, isError, postFavorite }) => (
+const GifItems = ({ userId, gifList, isLoading, postFavorite, showLoginMessage }) => (
   <div className='gifs_container'>
-    { isLoading ? <Loading /> : null }
-    { isError ? <ErrorMessage /> : null }
     { gifList.length ? gifList.map((item) => {
       return (
         <Gif userId={ userId } 
              key={ item.id } 
              gifId={ item.id } 
-             url={ item.images.downsized_large.url } 
+             stillUrl={ item.images.original_still.url } 
+             videoUrl={ item.images.downsized_large.url }
              postFavorite={ postFavorite } />
       )
     }): null }
+     { isLoading ? <Loading /> : null }
   </div>
 );
 

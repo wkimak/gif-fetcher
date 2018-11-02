@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_GIFS, CHANGE_SEARCH, DISPLAY_SPINNER, HIDE_SPINNER, DISPLAY_ERROR, HIDE_ERROR } from '../constants/constants.js';
+import { FETCH_GIFS, CHANGE_QUERY, DISPLAY_SPINNER, HIDE_SPINNER, DISPLAY_ERROR, HIDE_ERROR, END_RESULTS, FETCH_TRANSLATE_GIF } from '../constants/constants.js';
 
 export const handleLoading = (isLoading) => {
   if(isLoading) {
@@ -7,7 +7,6 @@ export const handleLoading = (isLoading) => {
   } else {
     return { type: HIDE_SPINNER }
   }
-
 }
 
 export const handleError = (isError) => {
@@ -18,9 +17,18 @@ export const handleError = (isError) => {
   }
 }
 
+export const handleTranslate = (searchTerm, weirdLevel) => async (dispatch) => {
+  try {
+    const response = await axios.get('/api/gifs', { params: { searchTerm, weirdLevel }})
+    dispatch({ type: FETCH_TRANSLATE_GIF, payload: response.data.data.images.downsized_large.url })
+  } catch {
+    console.log('ERROR getting translate search');
+  }
+}
+
 export const handleSearch = (searchTerm, offset) => (dispatch) => {
-  dispatch(handleLoading(true));
-  dispatch({ type: CHANGE_SEARCH, payload: searchTerm })
+  dispatch({ type: CHANGE_QUERY, payload: searchTerm })
+  dispatch({ type: END_RESULTS, payload: false })
   dispatch(fetchGifs(searchTerm, offset, () => {
      dispatch(handleLoading(false))
   }));
@@ -28,6 +36,7 @@ export const handleSearch = (searchTerm, offset) => (dispatch) => {
 
 
 export const fetchGifs = (searchTerm, offset, callback) => async (dispatch) => {
+    dispatch(handleLoading(true));
     const response = await axios.get('/api/gifs', { params: { searchTerm, offset }});
     if(!response.data.data.length){
       dispatch(handleError(true))
@@ -39,6 +48,12 @@ export const fetchGifs = (searchTerm, offset, callback) => async (dispatch) => {
                                               scrolling: false } })
       dispatch(handleError(false));
     }
+    dispatch(handleLoading(false));
         callback();
+}
+
+export const handleEndResults = () => (dispatch) => {
+  dispatch(handleLoading(false));
+  dispatch({ type: END_RESULTS, payload: true });
 }
 

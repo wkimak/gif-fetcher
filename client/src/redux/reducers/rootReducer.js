@@ -1,7 +1,8 @@
 import { combineReducers, reduceReducers } from 'redux';
-import { getGifs, handleLoading, handleError } from './fetchGifsReducer.js';
+import { getGifs, handleLoading, handleError, handleEnd } from './fetchGifsReducer.js';
 import { getUserId } from './loginReducer.js';
 import { handleFavorites, toggleFavoritesComponent } from './favoritesReducer.js';
+import { switchSearchType, handleWeirdness } from './formControlReducer.js';
 
 export default combineReducers({
   getGifs,
@@ -9,5 +10,8 @@ export default combineReducers({
   handleError,
   getUserId,
   handleFavorites,
-  toggleFavoritesComponent
+  toggleFavoritesComponent,
+  handleEnd,
+  switchSearchType,
+  handleWeirdness
 })
