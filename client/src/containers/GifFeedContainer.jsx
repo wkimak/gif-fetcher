@@ -79,6 +79,6 @@ const mapStateToProps = (state) => ({
    showLoginMessage: state.handleFavorites.showLoginMessage
 });
 
-const mapDispatchToProps = { postFavorite, handleLoading, handleEndResults, fetchGifs, fetchFavorites }
+const mapDispatchToProps = { postFavorite, handleEndResults, fetchGifs, fetchFavorites }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfiniteScroll);
