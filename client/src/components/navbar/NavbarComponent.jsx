@@ -6,13 +6,16 @@ import ErrorMessage from '../ErrorMessageComponent.jsx';
 const Navbar = ({ handleLogin, handleSignout, username, userId, showLoginMessage, errorMessage, navbarHeight }) => (
   <div className={navbarHeight === 100 ? 'navbar_container' : 'small_navbar' }>
     <img src='https://cdn.stashinvest.com/assets/images/globals/logo.svg' />
-     { showLoginMessage ? <LoginMessage /> : null }
-  { !userId ?
-    <Login handleLogin={ handleLogin } />
-    :
-      <button onClick={ () => handleSignout(userId) } className='signout_btn'>Sign Out</button>
-  }
-  { errorMessage ? <ErrorMessage message={ errorMessage } /> : null }
+      { showLoginMessage ? <LoginMessage /> : null }
+     
+      { !userId ?
+        <Login handleLogin={ handleLogin } />
+        :
+        <button onClick={ () => handleSignout(userId) } 
+                className='signout_btn'>Sign Out</button>
+      }
+
+      { errorMessage ? <ErrorMessage message={ errorMessage } /> : null }
   </div>
 )
 

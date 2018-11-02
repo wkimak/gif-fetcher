@@ -19,7 +19,7 @@ export const handleSignout = () => (dispatch) => {
   dispatch({ type: REMOVE_USERID })
 }
 
-
+// Adjust height of navbar depending on scroll position from NavContainer
 export const handleNavbarStyle = (height) => (dispatch) => {
   dispatch({ type: ANIMATE_NAVBAR, payload: height })
 }

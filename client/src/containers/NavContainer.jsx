@@ -8,7 +8,7 @@ import Navbar from '../components/navbar/NavbarComponent.jsx';
 
 
 const NavbarScroll = ({ handleLogin, handleSignout, username, userId, showLoginMessage, errorMessage, navbarHeight, handleNavbarStyle }) => {
-
+  // Invoking action to let navbar know what height to adjust to.
   const handleScroll = () => {
     if(window.pageYOffset < 300) {
       if(window.pageYOffset > 50) {

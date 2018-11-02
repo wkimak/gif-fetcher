@@ -7,7 +7,7 @@ import { POST_FAVORITE_SUCCESS,
 
 import { TOGGLE_LOGIN_MESSAGE } from '../constants/navbarConstants.js';
 
-
+// If user is not logged in, they cannot access favorites. This toggle a message to let them know.
 const toggleLoginMessage = () => (dispatch) => {
   dispatch({ type: TOGGLE_LOGIN_MESSAGE });
 
@@ -16,6 +16,7 @@ const toggleLoginMessage = () => (dispatch) => {
   }, 3000);
 }
 
+// post favorite and add the items to 'favoritesList' in state
 export const postFavorite = (userId, gifId, stillUrl, videoUrl) => async (dispatch) => {
   try {
     if(userId) {
@@ -29,6 +30,7 @@ export const postFavorite = (userId, gifId, stillUrl, videoUrl) => async (dispat
   }
 }
 
+// only if the user Is logged, their favorites will be fetched
 export const fetchFavorites = (userId) => async (dispatch) => {
   try {
     if(userId) {
@@ -49,6 +51,7 @@ export const deleteFavorite = (userId, gifId, arrayIndex) => async (dispatch) =>
   }
 }
 
+// Open and close side 'Favorites' tab
 export const toggleFavoritesComponent = (userId) => (dispatch) => {
   if(userId) {
     dispatch({ type: OPEN_FAVORITES })

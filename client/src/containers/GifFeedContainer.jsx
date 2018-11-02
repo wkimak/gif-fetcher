@@ -20,14 +20,15 @@ class InfiniteScroll extends Component {
 
     window.addEventListener('scroll', this.handleScroll);
   }
-
+  
+  // invoke action to fetch more gifs
   fetch = () => {
     this.props.fetchGifs(this.props.searchTerm, this.props.offset, () => {
       this.setState( () => ({ 
         scrolling: false }));
     })
   }
-
+  // set scrolling state to true so fetch function is not rapidly invoked
   loadMore = () => {
     this.setState( () => ({
       scrolling: true
@@ -35,6 +36,7 @@ class InfiniteScroll extends Component {
   }
 
   handleScroll = (e) => {
+    // If no more gifs left to fetch
     if(this.props.totalGifs <= this.props.offset && this.props.totalGifs > 0) {
       this.props.handleEndResults();
       return;
@@ -44,7 +46,7 @@ class InfiniteScroll extends Component {
     if(!lastGif) return;
     const lastGifOffset = lastGif.offsetTop + lastGif.clientHeight;
     const pageOffset = window.pageYOffset + window.innerHeight;
-   
+    
     if(pageOffset > lastGifOffset) {
       this.loadMore();
     }

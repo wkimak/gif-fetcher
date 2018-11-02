@@ -2,6 +2,7 @@ const axios = require('axios');
 const { knex } = require('../database/index.js');
 const { apiKey } = require('../../config.js');
 
+// the url changes depending on search type selected on client
 exports.fetchGifs = async (req, res) => { 
   try {
     if(req.query.offset) {

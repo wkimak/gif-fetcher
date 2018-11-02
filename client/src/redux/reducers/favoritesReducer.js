@@ -8,11 +8,11 @@ const initialState = {
 export const handleFavorites = (state = initialState, action) => {
   switch(action.type) {
     case 'POST_FAVORITE_SUCCESS':
-    
+     //if gif has not been been favorited yet, add to object. Else, return so there are no duplicates.
      if(!state.currentGifIds.hasOwnProperty(action.payload.gifId)) {
        state.currentGifIds[action.payload.gifId] = true;
      } else {
-      return state;
+       return state;
      }
 
       return {

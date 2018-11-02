@@ -1,5 +1,6 @@
 import React from 'react';
 
+// This component is used withing GifComponent and FavoriteComponent
 const Hover = ({ children, toggleVideo, isVideo }) => (
   <div className='hover_container'>
     <div>

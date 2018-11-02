@@ -1,6 +1,5 @@
 const initialState = {
   userId: null,
-  username: null,
   errorMessage: null,
   navbarHeight: 100
 }
@@ -23,7 +22,6 @@ export const getUserId = (state = initialState, action) => {
       return {
         ...state,
         userId: action.payload.userId,
-        username: action.payload.username,
         errorMessage: null
       }
 
@@ -31,7 +29,6 @@ export const getUserId = (state = initialState, action) => {
       return {
         ...state,
         userId: null,
-        username: null
       }
     case 'LOGIN_FAILURE':
       return {
