@@ -32,8 +32,6 @@ const NavbarScroll = ({ handleLogin, handleSignout, username, userId, showLoginM
   );
 }
 
-npx heroku addons:add amazon_rds url=mysql://wkimak:Jkpywb98@giffetcherinstance.cv4ydzzllfqa.us-east-2.rds.amazonaws.com/gifFetcher
-
 
 const mapStateToProps = (state) => ({
   userId: state.getUserId.userId,
