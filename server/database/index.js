@@ -5,6 +5,7 @@ const knex = require('knex')({
   client: 'mysql',
   connection: {
     host : database.mysqlEndpoint,
+    ssl : true,
     user : database.rdsUser,
     port: database.rdsPort,
     password : database.rdsPassword,
