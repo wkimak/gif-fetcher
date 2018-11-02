@@ -16,7 +16,9 @@ const FormControls = ({ handleSearchType, handleWeirdness, searchType }) => {
         <button className={ searchType === 'translate' ? 'control_btn_selected' : 'control_btn_unselected' } 
                 onClick = { () => handleSearchType('translate') }>Weird Search</button>
       </div>
-      {searchType === 'translate' ?
+      {searchType === 'search' ? <p className='welcome_message'> Welcome to Stash Gifest! Search for a list of gifs by term or... <br/> 
+                                     search by weirdness rank by selecting the options above.</p> :
+      
         <div className='slider_container'>
           <p className='weird_level'> Weirdness Level </p>
           <Slider max={ 10 }  
@@ -27,7 +29,7 @@ const FormControls = ({ handleSearchType, handleWeirdness, searchType }) => {
                     width: '100%'
                   }} />
         </div>
-      : null }
+       }
     </div>
   )
 }

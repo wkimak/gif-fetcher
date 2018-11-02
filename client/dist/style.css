@@ -223,6 +223,14 @@ body {
 	text-align: center;
 }
 
+.welcome_message {
+	font-size: 12px;
+	color: white;
+	font-family:'Lato', sans-serif;
+	margin-top: 15px;
+	text-align: center;
+}
+
 /* ------------------ Gifs Container ---------------- */
 .gifs_container {
 	width: 90%;
@@ -279,7 +287,7 @@ body {
 .hover_container div {
 	height: 20%;
 	padding-top: 10px;
-	background-color: rgba(50,206,206, 0.8);
+	background-color: rgb(50,206,206);
 }
 
 .hover_container button {
@@ -394,6 +402,10 @@ body {
 	.slider_container {
 		margin-top: 25px;
 	}
+
+	.welcome_message {
+	  font-size: 20px;
+    }
 }
 
 @media only screen and (min-width: 1224px) {
