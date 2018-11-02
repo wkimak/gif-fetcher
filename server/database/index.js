@@ -1,18 +1,17 @@
-const { database } = require('../../config.js');
-const knex = require('./knexfile.js');
-// var mysql = require('mysql');
-// var connection = mysql.createConnection(process.env.JAWSDB_URL);
+require('dotenv').config();
 
-// connection.connect();
+const knex = require('knex')({
+  client: 'mysql',
+  connection: process.env.JAWSDB_URL
+});
 
-// connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-//   if (err) throw err;
-
-//   console.log('The solution is: ', rows[0].solution);
-// });
-
-// connection.end();
+knex.raw('select 1+1 as result').then(function (data) {
+  // there is a valid connection in the pool
+  console.log('DATA', data)
+})
+.catch((err) => {
+  console.log(err);
+})
 
 module.exports = { knex };
-
 
