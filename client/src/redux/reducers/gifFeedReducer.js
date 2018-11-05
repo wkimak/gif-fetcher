@@ -6,7 +6,8 @@ const initialState = {
   offset: 0,
   totalGifs: 0,
   endResults: false,
-  errorMessage: null
+  errorMessage: null,
+  searchCategory: 'trending'
 }
 
 export const handleLoading = (state = initialState, action) => {
@@ -44,7 +45,7 @@ export const getGifs = (state = initialState, action) => {
         offset: state.offset + 6,
         errorMessage: null
       }
-    case 'CHANGE_QUERY':
+    case 'RESET_QUERY':
       return {
         ...state,
         gifList: [],

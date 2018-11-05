@@ -27,12 +27,14 @@ class FavoriteComponent extends Component {
         { this.state.isHovered && userId ? 
           <Hover stillUrl={ stillUrl} 
                  userId={ userId} 
-                 gifId={ gifId}  
+                 gifId={ gifId} 
+                 isVideo={ this.state.isVideo } 
                  toggleVideo={ this.toggleVideo }>
                 { () => <i onClick={ () => deleteFavorite(userId, gifId, index) } className="fas fa-trash-alt fa-lg"></i> } 
           </Hover>       
           : null }
-        <iframe className='favorite_iframe' src={ this.state.isVideo ? videoUrl : stillUrl }></iframe>
+
+        <img src={ this.state.isVideo ? videoUrl : stillUrl } />
         
       </div>
     );

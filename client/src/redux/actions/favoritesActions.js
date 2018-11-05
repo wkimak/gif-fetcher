@@ -1,4 +1,3 @@
-
 import '@babel/polyfill';
 import axios from 'axios';
 
@@ -19,11 +18,12 @@ const toggleLoginMessage = () => (dispatch) => {
 }
 
 // post favorite and add the items to 'favoritesList' in state
-export const postFavorite = (userId, gifId, stillUrl, videoUrl) => async (dispatch) => {
+export const postFavorite = (userId, gifId, stillUrl, videoUrl, callback) => async (dispatch) => {
   try {
     if(userId) {
       const favorite = await axios.post('/api/favorites', { userId, gifId, stillUrl, videoUrl });
       dispatch({ type: POST_FAVORITE_SUCCESS, payload: { gifId, stillUrl: stillUrl, videoUrl: videoUrl } })
+      callback();
     } else {
       dispatch(toggleLoginMessage());
     }

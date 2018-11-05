@@ -12,23 +12,25 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(this.props.searchType === 'search') {
-      this.props.handleSearch(this.state.searchTerm, 0);
-    } else {
+     if(this.props.searchType === 'weird') {
       this.props.handleWeirdSearch(this.state.searchTerm, this.props.weirdLevel);
-    }
+     } else {
+       this.props.handleSearch('search', this.state.searchTerm, 0);
+     }
      this.setState({ searchTerm: ''})
   }
 
   render() {
     return (
-      <form className='form_container' onSubmit={ this.handleSubmit }>
-        <input type='text' 
-               value={ this.state.searchTerm } 
-               onChange={ this.handleChange } 
-               placeholder='Search Gif' /> 
-        <i className="fas fa-search fa-lg" onClick={ this.handleSubmit }></i>
-      </form>
+      <div className='form_container'>
+        <form onSubmit={ this.handleSubmit }>
+          <input type='text' 
+                 value={ this.state.searchTerm } 
+                 onChange={ this.handleChange } 
+                 placeholder='Search Gif' /> 
+          <i className="fas fa-search fa-lg" onClick={ this.handleSubmit }></i>
+        </form>
+      </div>
     );
   }
 }

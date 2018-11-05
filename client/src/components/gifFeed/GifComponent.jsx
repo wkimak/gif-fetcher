@@ -3,7 +3,7 @@ import Hover from '../HoverComponent.jsx';
 
 class Gif extends Component {
 
-  state={ isHovered: false, isVideo: false, addedAsFavorite: false }
+  state={ isHovered: false, isVideo: false, playIconAnimation: false }
   
   toggleVideo = () => {
     this.setState({
@@ -19,6 +19,16 @@ class Gif extends Component {
     this.setState({ isHovered: false })
   }
 
+  saveFavorite = () => {
+    this.props.postFavorite(this.props.userId, this.props.gifId, this.props.stillUrl, this.props.videoUrl, () => {
+      this.setState({ playIconAnimation: true }) 
+
+      setTimeout(() => {
+        this.setState({ playIconAnimation: false })
+      }, 1000)
+    })
+  }
+
   render() {
     const { userId, gifId, stillUrl, videoUrl, postFavorite } = this.props;
     return (
@@ -28,17 +38,17 @@ class Gif extends Component {
         { this.state.isHovered ? 
           <Hover stillUrl={ stillUrl } 
                  isVideo={ this.state.isVideo }
-                 userId={ userId} 
+                 userId={ userId } 
                  gifId={ gifId}  
                  toggleVideo={ () => {
                    this.toggleVideo();
                  }}>
-                { () =>  <i onClick={ () =>  postFavorite(userId, gifId, stillUrl, videoUrl) } 
-                            className='fas fa-heart fa-lg'></i>
+                { () =>  <i onClick={ this.saveFavorite } 
+                            className={ !this.state.playIconAnimation ? 'fas fa-heart fa-lg' : 'fas fa-heart fa-lg favorited_animation' }></i>
                       } 
           </Hover>       
           : null }
-        <iframe src={ this.state.isVideo ? videoUrl : stillUrl }></iframe> 
+        <img src={ this.state.isVideo ? videoUrl : stillUrl } /> 
       </div>
     )
   }

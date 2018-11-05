@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchGifs, handleEndResults } from '../redux/actions/gifFeedActions.js';
+import { fetchGifs, handleEndResults, handleSearch } from '../redux/actions/gifFeedActions.js';
 import { postFavorite, fetchFavorites } from '../redux/actions/favoritesActions.js';
 
 import Loading from '../components/gifFeed/LoadingComponent.jsx';
@@ -17,13 +17,19 @@ class InfiniteScroll extends Component {
     if(this.props.userId) {
        this.props.fetchFavorites(this.props.userId);
     }
+    this.props.handleSearch('trending', null, 0);
 
     window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+    console.log('componentWillUnmount')
   }
   
   // invoke action to fetch more gifs
   fetch = () => {
-    this.props.fetchGifs(this.props.searchTerm, this.props.offset, () => {
+    this.props.fetchGifs(this.props.searchType, this.props.searchTerm || null, this.props.offset, () => {
       this.setState( () => ({ 
         scrolling: false }));
     })
@@ -42,17 +48,17 @@ class InfiniteScroll extends Component {
       return;
     } 
     if(this.state.scrolling === true) return;
-    const lastGif = document.querySelector('.gifs_container > div:last-child');
+    const lastGif = document.querySelector('.masonry_container > div:last-child');
     if(!lastGif) return;
     const lastGifOffset = lastGif.offsetTop + lastGif.clientHeight;
     const pageOffset = window.pageYOffset + window.innerHeight;
-    
     if(pageOffset > lastGifOffset) {
       this.loadMore();
     }
   }
 
   render() {
+    console.log('giffeedcontainer', this.props.searchType)
     const { offset, userId, gifList, isLoading, postFavorite, endResults } = this.props;
     return (
       <Fragment>
@@ -76,9 +82,10 @@ const mapStateToProps = (state) => ({
    totalGifs: state.getGifs.totalGifs,
    endResults: state.handleEnd.endResults,
    offset: state.getGifs.offset,
-   showLoginMessage: state.handleFavorites.showLoginMessage
+   showLoginMessage: state.handleFavorites.showLoginMessage,
+   searchType: state.switchSearchType.searchType
 });
 
-const mapDispatchToProps = { postFavorite, handleEndResults, fetchGifs, fetchFavorites }
+const mapDispatchToProps = { postFavorite, handleEndResults, fetchGifs, fetchFavorites, handleSearch }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfiniteScroll);

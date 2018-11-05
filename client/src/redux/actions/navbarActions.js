@@ -4,7 +4,9 @@ import { FETCH_USERID,
          REMOVE_USERID, 
          TOGGLE_LOGIN_MESSAGE, 
          LOGIN_FAILURE, 
-         ANIMATE_NAVBAR } from '../constants/navbarConstants.js';
+         ANIMATE_NAVBAR,
+         CHOOSE_SEARCH_TYPE } from '../constants/navbarConstants.js';
+import { RESET_QUERY } from '../constants/gifFeedConstants.js';
 
 
 export const handleLogin = (username, password) => async (dispatch) => {
@@ -24,3 +26,4 @@ export const handleSignout = () => (dispatch) => {
 export const handleNavbarStyle = (height) => (dispatch) => {
   dispatch({ type: ANIMATE_NAVBAR, payload: height })
 }
+

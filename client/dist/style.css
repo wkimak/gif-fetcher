@@ -10,12 +10,12 @@ body {
 	padding-bottom: 30px;
 }
 
-.login_message, .hover_container, .gif_container, .open_favorites_btn {
+.login_message, .hover_container, .gif_container {
 	position: absolute;
 }
 
-.login_message, .form_container, .form_container input, .gifs_container, 
-.end_results, .hover_container button, .gif_container button, .favorite_iframe {
+.login_message, .form_container, .gifs_container, 
+.end_results, .hover_container button, .gif_container button {
 	margin: auto;
 }
 
@@ -30,8 +30,7 @@ body {
 	background-color: rgb(50,206,206);
 }
 
-.navbar_container, .hover_container, .hover_container div,
-.favorite_iframe {
+.navbar_container, .hover_container, .hover_container div {
 	width: 100%;
 }
 
@@ -39,11 +38,11 @@ body {
 	font-weight: bold;
 }
 
-.hover_container button, .favorite_iframe {
+.hover_container button, .gif_container img, .favorite_container img {
 	display: block;
 }
 
-.login_form, .favorites_items_container {
+.favorites_items_container {
 	float: right;
 }
 
@@ -79,6 +78,23 @@ body {
 	margin-left: 50px;
 }
 
+.nav_links_ul {
+	list-style: none;
+	text-decoration: none;
+}
+
+.nav_content_container {
+	display: flex;
+	flex-direction: column;
+	float: right;
+}
+
+.nav_links_ul li {
+	display: inline-block;
+	color: white;
+	margin: 10px;
+}
+
 .fa-arrow-up {
 	color: red;
 	height: 50px;
@@ -105,6 +121,7 @@ body {
 /* ---- Login ---- */
 .login_form {
 	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 .login_form input[type='text'], .login_form input[type='password'] {
@@ -150,23 +167,31 @@ body {
 
 /* ----------------- Form ----------------- */
 .form_container {
-	width: 400px;
-	height: 40px;
-	margin-top: 150px;
+    margin-top: 150px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	border: 1px solid black;
-} 
+}
+
+.form_container select {
+	height: 40px;
+	flex-grow: 0.1;
+}
+
+.form_container form {
+	flex-grow: 1;
+}
 
 .form_container input {
-	flex: 1;
+	width: 100%;
 	height: 40px;
 	padding-left: 20px;
 	font-size: 20px;
 }
 
 .form_container i {
+	position: absolute;
+	width: 45px;
+	margin-left: -45px;
 	padding: 12px;
 	height: 40px;
 	color: white;
@@ -176,47 +201,16 @@ body {
 /* ----- Form Controls ---- */
 .form_controls_container {
 	background-color: #351a72;
-	width: 400px;
-	height: 150px;
+	height: 80px;
 	margin: auto;
-	padding-top: 15px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-}
-
-.controls_btn_container {
-	width: 300px;
-	margin: auto;
-}
-
-.form_controls_container button {
-	display: block;
-	width: 255px;
-	height: 30px;
-	margin: auto;
-	font-size: 22px;
-	border-radius: 5px;
-	font-family: 'Nunito', sans-serif;
-	cursor: pointer;
-}
-
-.form_controls_container button:focus {
-	outline: none;
-}
-
-.control_btn_unselected {
-	background-color: white;
-	box-shadow: 5px 5px 20px black;
-}
-
-.control_btn_selected {
-	background-color: rgb(50,206,206);
+	padding-top: 2px;
 }
 
 .slider_container {
 	width: 50%;
 	margin: auto;
-	margin-top: 15px;
 }
 
 .weird_level {
@@ -224,53 +218,37 @@ body {
 	text-align: center;
 }
 
-.welcome_message {
-	font-size: 12px;
-	color: white;
-	font-family:'Lato', sans-serif;
-	margin-top: 15px;
-	text-align: center;
-}
-
 /* ------------------ Gifs Container ---------------- */
-.gifs_container {
-	width: 90%;
-	min-height: 50vh;
-	margin-top: 20px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding-bottom: 50px;
+
+.masonry_container {
+	min-height: 80vh;
+	top: 20px;
+	margin: 0 auto;
 }
 
 /* --- Individual Gifs --- */
 .gif_container {
-	height: 300px;
-	margin: 5px 20px;
-	position: relative;
+	margin: 5px;
+	width: 300px;
 }
 
-.gif_container iframe {
-	height: 300px;
-	width: 350px;
-}
-
-.favorite_container {
-	height: 300px;
-	width: 400px;
-	position: relative;
-	margin: 10px;
-
+.gif_container img {
+	display: block;
+	margin: auto;
+	border: none;
+	width: 300px;
 }
 
 /* ----- Spinner --- */
 .loader_container {
 	width: 75px;
 	margin: auto;
+	margin-top: 20px;
 }
 
 /* ---- EndResults Component --- */
 .end_results {
+	margin-top: 30px;
 	color: white;
 	width: 200px;
 	height: 50px;
@@ -319,10 +297,21 @@ body {
 	color: red;
 }
 
+/* ---- Favorite Icon animation ---- */
+@keyframes favorited_animation {
+	from { float: right; margin-top: 12px; margin-right: 20px; cursor: pointer; }
+	to { float: right; margin-top: 12px; margin-right: 20px; cursor: pointer; color: red; transform: scale(1.5) }
+}
+
+.favorited_animation {
+  animation-name: favorited_animation;
+  animation-duration: 1s;
+}
+
 /* --- Translate Gif ---- */
-.translateGif_container iframe{
+.translateGif_container img {
 	width: 50%;
-	height: 400px;
+	height: auto;
 	margin: auto;
 	display: block;
 	margin-top: 20px;
@@ -330,52 +319,19 @@ body {
 
 
 /* ---------------- Favorite Container -------------- */
+
 .favorites_container {
 	width: 95%;
 	height: 100vh;
 	top: 50px;
-	right: -94%;
+	right: -95%;
+	background-color: #351a72;
+	padding: 40px 20px 80px 20px;
 }
 
-/* Item within favorites container */
-.favorites_items_container {
-  width: 99%;
-  height: 100vh;
-  overflow-y: scroll;
-  padding: 40px 20px 80px 20px;
-  background-color: #351a72;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* ---- Open Favorites Button --- */
-.open_favorites_btn {
-	transform: rotate(-90deg);
-	left: -135px;
-	top: 350px;
-	width: 250px;
-	height: 50px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	color: white;
-	font-size: 26px;
-	font-family: 'Nunito', sans-serif;
-	cursor: pointer;
-}
-
-.open_favorites_btn:focus {
-	outline: none;
-}
-
-/* ----- Individual Favorites Component ------ */
-.favorite_iframe {
-	height: 300px;
-	margin-bottom: 10px;
-}
 
 @keyframes grow_favorites_container {
-	from { right: -94%; }
+	from { right: -95%; }
 	to { right: 0; }
 }
 
@@ -383,6 +339,40 @@ body {
 	animation-name: grow_favorites_container;
 	animation-duration: 500ms;
 	animation-fill-mode: forwards;
+}
+
+
+/* ---- Open Favorites Button --- */
+.open_favorites_btn {
+	transform: rotate(-90deg);
+	position: absolute;
+	left: -150px;
+	top: 40vh;
+	width: 250px;
+	height: 50px;
+	border-radius: 10px 10px 0 0;
+	color: white;
+	font-size: 26px;
+	font-family: 'Nunito', sans-serif;
+	cursor: pointer;
+	border: none;
+}
+
+.open_favorites_btn:focus {
+	outline: none;
+}
+
+/* ----- Individual Favorites Component ------ */
+
+.favorite_container {
+	position: relative;
+	margin: 10px;
+}
+
+
+.gif_container img , .favorite_container img{
+	border: none;
+	width: 300px;
 }
 
 

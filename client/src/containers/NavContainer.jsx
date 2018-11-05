@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { handleLogin, handleSignout, handleNavbarStyle } from '../redux/actions/navbarActions.js';
+import { handleLogin, handleSignout, handleNavbarStyle, handleSearchType } from '../redux/actions/navbarActions.js';
+import { handleSearch } from '../redux/actions/gifFeedActions.js';
 
 import Navbar from '../components/navbar/NavbarComponent.jsx';
 
 
 
-const NavbarScroll = ({ handleLogin, handleSignout, username, userId, showLoginMessage, errorMessage, navbarHeight, handleNavbarStyle }) => {
+const NavbarScroll = ({ handleLogin, handleSignout, username, userId, showLoginMessage, errorMessage, navbarHeight, handleNavbarStyle, favoritesOpen, handleSearch }) => {
   // Invoking action to let navbar know what height to adjust to.
   const handleScroll = () => {
     if(window.pageYOffset < 300) {
@@ -28,7 +29,9 @@ const NavbarScroll = ({ handleLogin, handleSignout, username, userId, showLoginM
             userId={ userId }
             showLoginMessage={ showLoginMessage }
             errorMessage={ errorMessage }
-            navbarHeight={ navbarHeight } />
+            navbarHeight={ navbarHeight }
+            favoritesOpen={ favoritesOpen }
+            handleSearch={ handleSearch } />
   );
 }
 
@@ -38,11 +41,12 @@ const mapStateToProps = (state) => ({
   username: state.getUserId.username,
   showLoginMessage: state.handleFavorites.showLoginMessage,
   errorMessage: state.getUserId.errorMessage,
-  navbarHeight: state.animateNavbar.navbarHeight
+  navbarHeight: state.animateNavbar.navbarHeight,
+  favoritesOpen: state.toggleFavoritesComponent.favoritesOpen
 })
 
 const mapDispatchToProps = {
-  handleLogin, handleSignout, handleNavbarStyle
+  handleLogin, handleSignout, handleNavbarStyle, handleSearch
 }
 
 

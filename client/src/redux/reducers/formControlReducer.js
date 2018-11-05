@@ -1,18 +1,5 @@
 const initialState = {
-  searchType: 'search',
-  weirdLevel: 0
-}
-
-export const switchSearchType = (state = initialState, action) => {
-  switch(action.type) {
-    case 'CHOOSE_SEARCH_TYPE':
-      return {
-        ...state,
-        searchType: action.payload
-      }
-    default:
-      return state;
-  }
+  weirdLevel: 7
 }
 
 export const handleWeirdness = (state = initialState, action) => {
