@@ -7,7 +7,7 @@ const FavoriteItems = ({ userId, favoritesList, deleteFavorite, favoritesOpen, t
 
   const toggleFavorites = () => {
     toggleFavoritesComponent(userId);
-    if(!favoritesOpen) {
+    if(!favoritesOpen && userId) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'scroll';
