@@ -12,12 +12,14 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-     if(this.props.searchType === 'weird') {
-      this.props.handleWeirdSearch(this.state.searchTerm, this.props.weirdLevel);
-     } else {
-       this.props.handleSearch('search', this.state.searchTerm, 0);
-     }
-     this.setState({ searchTerm: ''})
+    if(this.state.searchTerm !== '') {
+      if(this.props.searchType === 'translate') {
+        this.props.handleWeirdSearch(this.state.searchTerm, this.props.weirdLevel);
+      } else {
+        this.props.handleSearch('search', this.state.searchTerm, 12, 0);
+      }
+      this.setState({ searchTerm: ''})
+    }
   }
 
   render() {

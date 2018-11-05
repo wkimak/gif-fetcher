@@ -5,10 +5,9 @@ const initialState = {
   searchType: 'trending'
 }
 
-export const switchSearchType = (state = initialState, action) => {
+export const changeSearchType = (state = initialState, action) => {
   switch(action.type) {
-    case 'CHOOSE_SEARCH_TYPE':
-    console.log('YOOOOOO', action.payload)
+    case 'CHANGE_SEARCH_TYPE':
       return {
         ...state,
         searchType: action.payload
@@ -32,14 +31,13 @@ export const animateNavbar = (state = initialState, action) => {
 
 export const getUserId = (state = initialState, action) => {
   switch(action.type) {
-    case 'FETCH_USERID':
+    case 'LOGIN_SUCCESS':
       return {
         ...state,
         userId: action.payload.userId,
         errorMessage: null
       }
-
-    case 'REMOVE_USERID':
+    case 'LOGOUT_SUCCESS':
       return {
         ...state,
         userId: null,

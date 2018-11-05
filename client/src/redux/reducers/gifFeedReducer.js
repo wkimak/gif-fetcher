@@ -12,7 +12,7 @@ const initialState = {
 
 export const handleLoading = (state = initialState, action) => {
   switch(action.type) {
-    case 'DISPLAY_SPINNER':
+    case 'TOGGLE_SPINNER':
       return {
         ...state,
         isLoading: action.payload
@@ -22,10 +22,9 @@ export const handleLoading = (state = initialState, action) => {
    }
 }
 
-
 export const handleEnd = (state = initialState, action) => {
   switch(action.type) {
-    case 'END_RESULTS':
+    case 'TOGGLE_END_RESULTS':
       return {
         ...state,
         endResults: action.payload
@@ -38,21 +37,19 @@ export const handleEnd = (state = initialState, action) => {
 export const getGifs = (state = initialState, action) => {
   switch(action.type) {
     case 'FETCH_GIFS_SUCCESS':
+      if(state.offset === 0) {
+        var newOffset = 13;
+      } else {
+        newOffset = 7;
+      }
       return {
         ...state,
         gifList: [...state.gifList, ...action.payload.data],
         totalGifs: action.payload.totalGifs,
-        offset: state.offset + 6,
+        offset: state.offset + newOffset,
         errorMessage: null
       }
-    case 'RESET_QUERY':
-      return {
-        ...state,
-        gifList: [],
-        searchTerm: action.payload,
-        offset: 0
-      }
-    case 'FETCH_TRANSLATE_GIF':
+    case 'FETCH_WEIRD_GIF_SUCCESS':
       return {
         ...state,
         translateGif: action.payload,
@@ -62,6 +59,13 @@ export const getGifs = (state = initialState, action) => {
       return {
         ...state,
         errorMessage: action.payload
+      }
+    case 'RESET_QUERY':
+      return {
+        ...state,
+        gifList: [],
+        searchTerm: action.payload,
+        offset: 0
       }
     default:
       return state;

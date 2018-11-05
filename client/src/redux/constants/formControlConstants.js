@@ -1,1 +1,0 @@
-export const ADJUST_WEIRDNESS = 'ADJUST_WEIRDNESS';

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Hover from '../HoverComponent.jsx';
+import Hover from '../misc/HoverComponent.jsx';
 
 class Gif extends Component {
 
@@ -20,11 +20,12 @@ class Gif extends Component {
   }
 
   saveFavorite = () => {
-    this.props.postFavorite(this.props.userId, this.props.gifId, this.props.stillUrl, this.props.videoUrl, () => {
-      this.setState({ playIconAnimation: true }) 
+    const { postFavorite, userId, gifId, stillUrl, videoUrl } = this.props;
+    postFavorite(userId, gifId, stillUrl, videoUrl, () => {
+      this.setState( () => ({ playIconAnimation: true }))
 
       setTimeout(() => {
-        this.setState({ playIconAnimation: false })
+        this.setState( () => ({ playIconAnimation: false }))
       }, 1000)
     })
   }
@@ -50,7 +51,7 @@ class Gif extends Component {
           : null }
         <img src={ this.state.isVideo ? videoUrl : stillUrl } /> 
       </div>
-    )
+    );
   }
 }
 

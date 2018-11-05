@@ -21,7 +21,7 @@ const WeirdSlider = ({ handleWeirdness, searchType }) => {
                   }} />
         </div>
     </div>
-  )
+  );
 }
 
 

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { handleSearch, handleWeirdSearch } from '../redux/actions/gifFeedActions.js';
-import { handleWeirdness } from '../redux/actions/formControlActions.js';
+import { handleWeirdness } from '../redux/actions/weirdSliderActions.js';
 import Home from '../components/home/HomeComponent.jsx';
 
 const mapStateToProps = (state) => ({
-  searchType: state.switchSearchType.searchType,
+  searchType: state.changeSearchType.searchType,
   translateGif: state.getGifs.translateGif,
   weirdLevel: state.handleWeirdness.weirdLevel,
   errorMessage: state.getGifs.errorMessage,

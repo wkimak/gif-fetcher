@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Hover from '../HoverComponent.jsx';
+import Hover from '../misc/HoverComponent.jsx';
 
 
 class FavoriteComponent extends Component {
@@ -35,7 +35,6 @@ class FavoriteComponent extends Component {
           : null }
 
         <img src={ this.state.isVideo ? videoUrl : stillUrl } />
-        
       </div>
     );
   }

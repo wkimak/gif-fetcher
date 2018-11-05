@@ -8,7 +8,7 @@ import Navbar from '../components/navbar/NavbarComponent.jsx';
 
 
 
-const NavbarScroll = ({ handleLogin, handleSignout, username, userId, showLoginMessage, errorMessage, navbarHeight, handleNavbarStyle, favoritesOpen, handleSearch }) => {
+const NavbarScroll = ({ handleLogin, handleSignout, userId, showLoginMessage, errorMessage, navbarHeight, handleNavbarStyle, favoritesOpen, handleSearch }) => {
   // Invoking action to let navbar know what height to adjust to.
   const handleScroll = () => {
     if(window.pageYOffset < 300) {
@@ -25,7 +25,6 @@ const NavbarScroll = ({ handleLogin, handleSignout, username, userId, showLoginM
   return (
     <Navbar handleLogin={ handleLogin }
             handleSignout={ handleSignout }
-            username={ username }
             userId={ userId }
             showLoginMessage={ showLoginMessage }
             errorMessage={ errorMessage }
@@ -38,11 +37,10 @@ const NavbarScroll = ({ handleLogin, handleSignout, username, userId, showLoginM
 
 const mapStateToProps = (state) => ({
   userId: state.getUserId.userId,
-  username: state.getUserId.username,
   showLoginMessage: state.handleFavorites.showLoginMessage,
   errorMessage: state.getUserId.errorMessage,
   navbarHeight: state.animateNavbar.navbarHeight,
-  favoritesOpen: state.toggleFavoritesComponent.favoritesOpen
+  favoritesOpen: state.toggleFavoritesComponent.favoritesOpen,
 })
 
 const mapDispatchToProps = {

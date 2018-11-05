@@ -6,7 +6,6 @@ const Hover = ({ children, toggleVideo, isVideo }) => (
     <div>
       <i onClick={ toggleVideo } className={isVideo ? 'far fa-pause-circle fa-lg' : 'fas fa-play-circle fa-lg'}></i>
         { children() }
-     
     </div>
   </div>
 )

@@ -5,7 +5,7 @@ import { POST_FAVORITE_SUCCESS,
          FETCH_FAVORITES_SUCCESS, 
          DELETE_FAVORITE_SUCCESS, 
          OPEN_FAVORITES } from '../constants/favoritesConstants.js';
-
+         
 import { TOGGLE_LOGIN_MESSAGE } from '../constants/navbarConstants.js';
 
 // If user is not logged in, they cannot access favorites. This toggle a message to let them know.

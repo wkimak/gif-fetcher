@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchGifs, handleEndResults, handleSearch } from '../redux/actions/gifFeedActions.js';
 import { postFavorite, fetchFavorites } from '../redux/actions/favoritesActions.js';
 
-import Loading from '../components/gifFeed/LoadingComponent.jsx';
+import Loading from '../components/misc/LoadingComponent.jsx';
 import GifItems from '../components/gifFeed/GifItemsComponent.jsx';
 import EndResults from '../components/gifFeed/EndResultsComponent.jsx';
 
@@ -14,22 +14,23 @@ class InfiniteScroll extends Component {
   state = { scrolling: false }
   
   componentDidMount() {
-    if(this.props.userId) {
-       this.props.fetchFavorites(this.props.userId);
+    const { userId, fetchFavorites, handleSearch } = this.props;
+    if(userId) {
+       fetchFavorites(this.props.userId);
     }
-    this.props.handleSearch('trending', null, 0);
-
+    
+    handleSearch('trending', null, 12, 0);
     window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
-    console.log('componentWillUnmount')
   }
   
   // invoke action to fetch more gifs
   fetch = () => {
-    this.props.fetchGifs(this.props.searchType, this.props.searchTerm || null, this.props.offset, () => {
+    const { fetchGifs, searchType, searchTerm, offset } = this.props;
+    fetchGifs(searchType, searchTerm, 6, offset, () => {
       this.setState( () => ({ 
         scrolling: false }));
     })
@@ -42,23 +43,27 @@ class InfiniteScroll extends Component {
   }
 
   handleScroll = (e) => {
+    if(this.state.scrolling === true) return;
+
+    const { handleEndResults, totalGifs, offset } = this.props;
     // If no more gifs left to fetch
-    if(this.props.totalGifs <= this.props.offset && this.props.totalGifs > 0) {
-      this.props.handleEndResults();
+    if(totalGifs <= offset && totalGifs > 0) {
+      handleEndResults();
       return;
     } 
-    if(this.state.scrolling === true) return;
+
     const lastGif = document.querySelector('.masonry_container > div:last-child');
     if(!lastGif) return;
+
     const lastGifOffset = lastGif.offsetTop + lastGif.clientHeight;
     const pageOffset = window.pageYOffset + window.innerHeight;
+
     if(pageOffset > lastGifOffset) {
       this.loadMore();
     }
   }
 
   render() {
-    console.log('giffeedcontainer', this.props.searchType)
     const { offset, userId, gifList, isLoading, postFavorite, endResults } = this.props;
     return (
       <Fragment>
@@ -83,7 +88,7 @@ const mapStateToProps = (state) => ({
    endResults: state.handleEnd.endResults,
    offset: state.getGifs.offset,
    showLoginMessage: state.handleFavorites.showLoginMessage,
-   searchType: state.switchSearchType.searchType
+   searchType: state.changeSearchType.searchType
 });
 
 const mapDispatchToProps = { postFavorite, handleEndResults, fetchGifs, fetchFavorites, handleSearch }

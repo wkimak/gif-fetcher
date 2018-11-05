@@ -1,8 +1,8 @@
-import { combineReducers, reduceReducers } from 'redux';
+import { combineReducers } from 'redux';
 import { getGifs, handleLoading, handleError, handleEnd } from './gifFeedReducer.js';
-import { getUserId, animateNavbar, switchSearchType } from './navbarReducer.js';
+import { getUserId, animateNavbar, changeSearchType } from './navbarReducer.js';
 import { handleFavorites, toggleFavoritesComponent } from './favoritesReducer.js';
-import { handleWeirdness } from './formControlReducer.js';
+import { handleWeirdness } from './weirdSliderReducer.js';
 
 export default combineReducers({
   animateNavbar,
@@ -12,6 +12,6 @@ export default combineReducers({
   handleFavorites,
   toggleFavoritesComponent,
   handleEnd,
-  switchSearchType,
+  changeSearchType,
   handleWeirdness
 })

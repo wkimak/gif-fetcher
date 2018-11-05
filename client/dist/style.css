@@ -5,24 +5,24 @@
 }
 
 /* -------- General Styles -------- */
-
 body {
 	padding-bottom: 30px;
 }
 
-.login_message, .hover_container, .gif_container {
+.login_message, .hover_container, .gif_container, .form_container i,
+.open_favorites_btn {
 	position: absolute;
 }
 
-.login_message, .form_container, .gifs_container, 
-.end_results, .hover_container button, .gif_container button {
+.login_message, .form_container, .gifs_container, .form_controls_container, .slider_container,
+.end_results, .hover_container button, .gif_container button, .large_navbar_container img {
 	margin: auto;
 }
 
-.navbar_container, .favorites_container {
+.large_navbar_container, .small_navbar_container, .favorites_container {
 	position: fixed;
 }
-.navbar_container, .form_container i {
+.large_navbar_container, .small_navbar_container, .form_container i, .form_controls_container {
     background-color: #351a72;
 }
 
@@ -30,7 +30,17 @@ body {
 	background-color: rgb(50,206,206);
 }
 
-.navbar_container, .hover_container, .hover_container div {
+.form_container i, .nav_links_ul,  .login_form input[type='submit'],
+.login_message, .weird_level, .end_results, .hover_container button,
+.open_favorites_btn {
+	color: white;
+}
+
+.signout_btn, .fa-arrow-up, .fa-trash-alt {
+	color: red;
+}  
+
+.large_navbar_container, .small_navbar_container, .hover_container, .hover_container div {
 	width: 100%;
 }
 
@@ -46,33 +56,35 @@ body {
 	float: right;
 }
 
+.large_navbar_container, .small_navbar_container, .large_nav_content, .small_nav_content,
+.form_container {
+	display: flex;
+}
+
+.fa-heart, .fa-trash-alt, .fa-arrow-up, .fa-play-circle, .fa-pause-circle, .nav_links_ul li,  
+.login_form input[type='submit'], .form_container i, .open_favorites_btn, .signout_btn {
+	cursor: pointer;
+}
+
+/* ---------------- Smallest screen size ----------------- */
 
 
 /* ---------------- Navbar ----------------- */
-.navbar_container {
-	height: 100px;
-	padding-top: 10px;
+.large_navbar_container, .small_navbar_container {
+	padding: 10px;
 	top: 0;
 	z-index: 1;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
-.navbar_container img {
-	height: 70px;
-	width: auto;
-	margin-left: 50px;
-}
-
-.small_navbar {
+.large_navbar_container img {
 	height: 50px;
-	padding-top: 10px;
-	top: 0;
-	z-index: 1;
-	width: 100%;
-	background-color: #351a72;
-	position: fixed;
+	width: auto;
+	margin-bottom: 10px;
 }
 
-.small_navbar img {
+.small_navbar_container img {
 	height: 30px;
 	width: auto;
 	margin-left: 50px;
@@ -83,23 +95,30 @@ body {
 	text-decoration: none;
 }
 
-.nav_content_container {
-	display: flex;
+
+.large_nav_content, .small_nav_content {
 	flex-direction: column;
-	float: right;
 }
+
+.large_nav_content ul, .small_nav_content {
+	margin-top: 10px;
+}
+
 
 .nav_links_ul li {
 	display: inline-block;
-	color: white;
 	margin: 10px;
+	font-family: 'Nunito', sans-serif;
+}
+
+.link_active {
+	color: rgb(50,206,206);
+	font-weight: bold;
 }
 
 .fa-arrow-up {
-	color: red;
 	height: 50px;
 	width: 50px;
-	cursor: pointer;
 	position: relative;
 }
 
@@ -114,29 +133,28 @@ body {
 .bounce_arrow {
 	animation-name: bounce;
 	animation-duration: 2s;
-	animation-iteration-count: infinite;;
+	animation-iteration-count: infinite;
 }
 
 
 /* ---- Login ---- */
 .login_form {
 	margin-right: 10px;
-	margin-bottom: 10px;
+	width: 390px;
 }
 
 .login_form input[type='text'], .login_form input[type='password'] {
 	margin-right: 3px;
 	height: 25px;
 	width: 150px;
+	padding: 3px;
 }
 
-.login_form input[type='submit'] {
+ .login_form input[type='submit'] {
 	border: none;
 	height: 25px;
 	width: 80px;
 	background-color: rgb(50,206,206);
-	color: white;
-	cursor: pointer;
 }
 
 /* --- Sign Out --- */
@@ -144,11 +162,8 @@ body {
 	background-color: red;
 	height: 30px;
 	width: 150px;
-	position: absolute;
-	top: 7px;
-	right: 0px;
-	margin-right: 20px;
 	color: white;
+	align-self: center;
 }
 
 /* ---- Login Message --- */
@@ -161,14 +176,20 @@ body {
 	border-radius: 5px;
 	padding: 10px;
 	background-color: red;
-	color: white;
+}
+
+/* --- ERROR Component */ 
+.error_component {
+	color: red;
+	text-align: center;
+	margin-top: 30px;
+	font-size: 24px;
 }
 
 
 /* ----------------- Form ----------------- */
 .form_container {
-    margin-top: 150px;
-	display: flex;
+    margin-top: 200px;
 	align-items: center;
 }
 
@@ -189,37 +210,28 @@ body {
 }
 
 .form_container i {
-	position: absolute;
 	width: 45px;
 	margin-left: -45px;
 	padding: 12px;
 	height: 40px;
-	color: white;
-	cursor: pointer;
 }
 
 /* ----- Form Controls ---- */
 .form_controls_container {
-	background-color: #351a72;
 	height: 80px;
-	margin: auto;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-radius: 5px 5px 0 0;
 	padding-top: 2px;
 }
 
 .slider_container {
 	width: 50%;
-	margin: auto;
 }
 
 .weird_level {
-	color: white;
 	text-align: center;
 }
 
 /* ------------------ Gifs Container ---------------- */
-
 .masonry_container {
 	min-height: 80vh;
 	top: 20px;
@@ -249,7 +261,6 @@ body {
 /* ---- EndResults Component --- */
 .end_results {
 	margin-top: 30px;
-	color: white;
 	width: 200px;
 	height: 50px;
 	border-radius: 10px;
@@ -273,7 +284,6 @@ body {
 .hover_container button {
 	width: 200px;
 	height: 40px;
-	color: white;
 }
 
 /* ----- Hover Components Icons ----- */
@@ -283,19 +293,14 @@ body {
 	float: right;
 	margin-right: 15px;
 	margin-top: 12px;
-	cursor: pointer;
 }
 
 .fa-heart, .fa-trash-alt {
 	float: right;
 	margin-top: 12px;
 	margin-right: 20px;
-	cursor: pointer;
 }
 
-.fa-trash-alt {
-	color: red;
-}
 
 /* ---- Favorite Icon animation ---- */
 @keyframes favorited_animation {
@@ -345,16 +350,13 @@ body {
 /* ---- Open Favorites Button --- */
 .open_favorites_btn {
 	transform: rotate(-90deg);
-	position: absolute;
 	left: -150px;
 	top: 40vh;
 	width: 250px;
 	height: 50px;
 	border-radius: 10px 10px 0 0;
-	color: white;
 	font-size: 26px;
 	font-family: 'Nunito', sans-serif;
-	cursor: pointer;
 	border: none;
 }
 
@@ -376,7 +378,41 @@ body {
 }
 
 
+
 /* ------------------- Media Queries ------------- */
+@media only screen and (min-width: 600px) {
+  .form_container {
+  	margin-top: 140px;
+  }	
+
+  .large_navbar_container img {
+  	margin-top: 10px;
+  }
+
+  .large_nav_content .signout_btn {
+  	align-self: flex-end;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+    .large_navbar_container img, .small_navbar_container img {
+    	margin-left: 50px;
+    }
+
+
+    .large_navbar_container {
+    	justify-content: space-between;
+    }
+
+    .small_nav_container,  .small_nav_content {
+    	align-items: center;
+    }
+
+    .small_nav_content ul {
+	    margin-top: 5px;
+    }
+}
+
 @media only screen and (min-width: 768px) {
 	.form_controls_container, .form_container {
 		width: 700px;
@@ -395,13 +431,9 @@ body {
 	.slider_container {
 		margin-top: 25px;
 	}
-
-	.welcome_message {
-	  font-size: 20px;
-    }
 }
 
-@media only screen and (min-width: 1224px) {
+@media only screen and (min-width: 1100px) {
 	.form_controls_container, .form_container {
 		width: 900px;
 	}
@@ -414,5 +446,27 @@ body {
 		display: inline-block;
 		width: 300px;
 		margin-left: 40px;
+	}
+
+	.small_navbar_container, .small_nav_content {
+		justify-content: space-between;
+		flex-direction: row;
+	}
+
+	.small_nav_content {
+		margin-bottom: 10px;
+	}
+
+	.small_navbar_container {
+		height: 50px;
+	}
+
+	.small_nav_content ul {
+		order: -1;
+		margin-right: 50px;
+	}
+
+	.signout_btn {
+		justify-content: flex-end;
 	}
 }

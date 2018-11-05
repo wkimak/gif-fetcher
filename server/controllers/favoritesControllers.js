@@ -26,8 +26,8 @@ exports.postFavorites = async (req, res) => {
                                               });
         res.sendStatus(200);
       } catch {
-          console.log('ERROR inserting into favorites/user_favorites table');
           res.sendStatus(500);
+          console.log('ERROR inserting into favorites/user_favorites table');
       }
       // gif_id was already stored in favorites table, so now check to see if it exists in users_favorites table
       // Currently, gif_ids are never removed from favorites table (They should be).
@@ -77,8 +77,6 @@ exports.fetchFavorites = async (req, res) => {
 }
 
 exports.deleteFavorites = async (req, res) => {
-  console.log(req.query.gifId)
-
   try {
     const favoriteId = await knex.select('id_favorite').from('favorites').where('gif_id', req.query.gifId);
     const deletedFavorite = await knex('users_favorites')

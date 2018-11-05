@@ -14,12 +14,13 @@ export const handleFavorites = (state = initialState, action) => {
      } else {
        return state;
      }
-
+     
       return {
         ...state,
-        favoritesList: [...state.favoritesList, { gif_id: action.payload.gifId, still_url: action.payload.stillUrl, video_url: action.payload.videoUrl }]
+        favoritesList: [...state.favoritesList, { gif_id: action.payload.gifId, 
+                                                  still_url: action.payload.stillUrl, 
+                                                  video_url: action.payload.videoUrl }]
       }
-
     case 'FETCH_FAVORITES_SUCCESS':
       action.payload.map((favorite) => {
         if(!state.currentGifIds.hasOwnProperty(favorite.gif_id)) {

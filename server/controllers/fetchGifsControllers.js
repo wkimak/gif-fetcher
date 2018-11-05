@@ -4,22 +4,19 @@ const { apiKey } = require('../../config.js');
 
 // the url changes depending on search type selected on client
 exports.fetchGifs = async (req, res) => { 
-  const searchType = req.query.searchType;
+  const searchType = req.query.searchType,
+  searchTerm = req.query.searchTerm,
+  limit = req.query.limit,
+  offset = req.query.offset;
   try {
-    if(searchType === 'search') {
-        var fetchGifs = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${req.query.searchTerm}&limit=6&offset=${req.query.offset}`);
-    } else if(searchType === 'trending') {
-        fetchGifs = await axios.get(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=6&offset=${req.query.offset}`);
-    } else if(searchType === 'politics') {
-        fetchGifs = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=politics&limit=6&offset=${req.query.offset}`);
-    } else if(searchType === 'entertainment') {
-        fetchGifs = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=entertainment&limit=6&offset=${req.query.offset}`);
-    } else if(searchType === 'sports') {
-        fetchGifs = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=sports&limit=6&offset=${req.query.offset}`);
+    if(searchType === 'trending') {
+      var fetchGifs = await axios.get(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=${limit}&offset=${offset}`);
+    } else {
+      fetchGifs = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchTerm}&limit=${limit}&offset=${offset}`);
     }
-   
     res.send(fetchGifs.data);
   } catch {
+    res.sendStatus(500);
     console.log('ERROR fetching gifs from gif API');
   }
 }
@@ -29,6 +26,7 @@ exports.fetchWeirdGifs = async (req, res) => {
     const fetchWeirdGif = await axios.get(`https://api.giphy.com/v1/gifs/translate?api_key=${apiKey}&s=${req.query.searchTerm}&weirdness=${req.query.weirdLevel}`);
     res.send(fetchWeirdGif.data);
   } catch {
+    res.sendStatus(500);
     console.log('ERROR fetching weird gif from API');
   }
 }

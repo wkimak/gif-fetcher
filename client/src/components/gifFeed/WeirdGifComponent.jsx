@@ -1,9 +1,8 @@
 import React from 'react';
-import Loading from './LoadingComponent.jsx';
+import Loading from '../misc/LoadingComponent.jsx';
 
 const WeirdGif = ({ url, isLoading }) => (
   <div className='translateGif_container'>
-  { console.log(url)}
   { !isLoading ?
     <img key={ url } src={ url } />
     : <Loading /> }

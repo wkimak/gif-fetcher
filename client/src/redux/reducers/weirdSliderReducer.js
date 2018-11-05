@@ -4,7 +4,7 @@ const initialState = {
 
 export const handleWeirdness = (state = initialState, action) => {
   switch(action.type) {
-    case 'ADJUST_WEIRDNESS':
+    case 'ADJUST_WEIRDNESS_LEVEL':
     return {
       ...state,
       weirdLevel: action.payload

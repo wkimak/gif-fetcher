@@ -15,10 +15,11 @@ const FavoriteItems = ({ userId, favoritesList, deleteFavorite, favoritesOpen, t
   }
 
   return (
-    <div className={favoritesOpen ? 'grow_favorites_container favorites_container' : 'favorites_container'} aria-hidden="true">
+    <section className={favoritesOpen ? 'grow_favorites_container favorites_container' : 'favorites_container'} aria-hidden="true">
       <button className='open_favorites_btn' onClick={ toggleFavorites }>Favorites</button>
+      <div style={{ overflow: 'scroll', height: '100%'}}>
         <Masonry className={'masonry_container'} options={ {fitWidth: true} } elementType={'div'}>
-        { favoritesList.length ? favoritesList.map((item, i) => {
+          { favoritesList.length ? favoritesList.map((item, i) => {
             return (
               <FavoriteComponent key={ item.gif_id} 
                                  index={ i } 
@@ -28,9 +29,10 @@ const FavoriteItems = ({ userId, favoritesList, deleteFavorite, favoritesOpen, t
                                  videoUrl={ item.video_url } 
                                  deleteFavorite={ deleteFavorite } />
             );
-        }) : null}
+          }) : null}
         </Masonry>
-    </div>
+      </div>
+    </section>
   );
 }
 
