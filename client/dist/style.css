@@ -14,8 +14,8 @@ body {
 	position: absolute;
 }
 
-.login_message, .form_container, .gifs_container, .form_controls_container, .slider_container,
-.end_results, .hover_container button, .gif_container button, .large_navbar_container img {
+.login_message, .form_container, .form_controls_container, .slider_container,
+.end_results, .large_navbar_container img {
 	margin: auto;
 }
 
@@ -138,8 +138,12 @@ body {
 
 
 /* ---- Login ---- */
+
+.large_nav_content .login_form {
+	align-self: flex-end;
+}
+
 .login_form {
-	margin-right: 10px;
 	width: 390px;
 }
 
